@@ -1,0 +1,71 @@
+.about {
+
+    .about-subtitles {
+        h4 {
+            font-weight: bold;
+            font-size: 3rem;
+        }
+
+        p{
+            max-width: 26rem;
+        }
+
+        button {
+            padding: 0.6rem 2rem;
+            border: none;
+            border-radius: 0.325rem;
+            background-color: var(--red-500);
+            color: var(--text-white);
+            transition: filter 0.3s;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
+    
+    .img-container {
+        width: 15rem;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.about-services {
+    padding: 1.5rem 2rem;
+    margin: auto;
+    column-count: 4;
+
+    .service {
+        
+        .service-icon {
+            font-size: 2rem;
+            color: var(--red-500);
+            margin: 0.75rem;
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: rotateY(180deg);
+            }
+        }
+
+        .service-subtitles {
+            
+
+            h6 {
+                font-weight: bolder;
+            }
+    
+            p {
+                // max-width: 15ch;
+                // overflow: hidden;
+                // text-overflow: ellipsis;
+                // white-space: nowrap;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}

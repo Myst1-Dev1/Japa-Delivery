@@ -1,0 +1,136 @@
+.deals-hot {
+    flex-wrap: wrap;
+    h4 {
+        font-weight: bold;
+        font-size: 1.4rem;
+    }
+
+    .deals-hot-container {
+            box-shadow: 0 0 0.1rem #000;
+            padding: 1rem;
+            flex: 1;
+            max-width: 100%;
+            max-height:100%;
+            transition: 0.3s;
+
+        .deals-hot-content {
+            flex-wrap: wrap;
+            .img-container {
+                width: 20rem;
+                img {
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .deals-hot-subtitles {
+
+                .deals-hot-time {
+                    font-size: 0.8rem;
+                    box-shadow: 0 0 0.1rem #000;
+                    padding: 0.4rem;
+                    text-align: center;
+                    
+                    span {
+                        color: var(--red-500);
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            h3 {
+                font-weight: bold;
+            }
+
+            .price {
+                h4 {
+                    color: var(--red-500);
+                }
+            }
+
+            .reviews {
+                img {
+                    width: 6rem;
+                    object-fit: contain;
+                }
+
+                span {
+                    color: var(--red-500);
+                    font-size: 0.8rem;
+                }
+            }
+
+            p {
+                max-width: 25rem;
+            }
+
+            .amount-product {
+
+                input {
+                    border: 1px solid var(--red-500);
+                    width: 2.5rem;
+                    height: 2rem;
+                    font-weight: bold;
+                }
+
+                span {
+                    background-color: var(--red-500);
+                    color: var(--text-white);
+                    width: 2.5rem;
+                    height: 2rem;
+                    font-size: 1.3rem;
+                    cursor: pointer;
+                }
+
+                .add-to-cart {
+                    background-color: var(--red-500);
+                    color: var(--text-white);
+                    border-radius: 0.325rem;
+                    height: 2rem;
+                    padding:0.4rem 1rem;
+                    cursor: pointer;
+                    transition: 0.3s;
+
+                    &:hover{
+                        filter: brightness(0.8);
+                    }
+                }
+            }
+        }
+    }
+
+    .top-selling-products {
+        max-height: 100%;
+        width: 20rem;
+        padding: 1rem;
+        box-shadow: 0 0 0.1rem #000;
+
+        .product-box {
+
+            img {
+                width: 7rem;
+                object-fit: cover;
+            }
+
+            .product-box-subtitles {
+                h6 {
+                    color: var(--gray-700);
+                    
+                }
+                
+                img {
+                    width: 5rem;
+                    object-fit: cover;
+                    margin-top: -1.2rem;
+                }
+
+                .price {
+                    h6 {
+                        color: var(--red-500);
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}

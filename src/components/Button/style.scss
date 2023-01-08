@@ -1,0 +1,13 @@
+button {
+    font-family: 'Poppins', sans-serif;
+    padding: 0.6rem 2rem;
+    background-color: var(--red-500);
+    border: none;
+    border-radius: 0.325rem;
+    color: var(--text-white);
+    transition: filter 0.3s;
+
+    &:hover{
+        filter: brightness(0.8);
+    }
+}
