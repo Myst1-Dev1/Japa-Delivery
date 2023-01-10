@@ -75,7 +75,7 @@ export function Header() {
                         <ul className='d-flex align-items-center m-auto'>
                             <li><a href="/">INICIO</a></li>
                             <li><a href="/">LOJA</a></li>
-                            <li><a href="/">SOBRE</a></li>
+                            <li><a href="/sobre">SOBRE</a></li>
                             <li><a href="/">PÁGINAS</a></li>
                             <li><a href="/">CONTATO</a></li>
                         </ul>
@@ -90,7 +90,7 @@ export function Header() {
                         <BsHeart />
                     </div>
                     <div className="icon">
-                        <a href="/login"><BsPerson /></a>
+                        <a href="/login"><BsPerson className='icon' /></a>
                     </div>
                     <div className="icon icon-responsive">
                         <HiBars3 onClick={handleOpenResponsiveMenu} />
@@ -106,19 +106,19 @@ export function Header() {
                             <IoMdClose onClick={handleCloseResponsiveMenu} className='close-responsive-menu' />
                           <div className='navBar-responsive d-flex flex-column mt-5 gap-2'>
                               <div className="item-menu">
-                                  <a href="/">HOME</a>
+                                  <a href="/">INICIO</a>
                               </div>
                               <div className="item-menu">
-                                  <a href="/">SHOP</a>
+                                  <a href="/">LOJA</a>
                               </div>
                               <div className='item-menu'>
-                                  <a href="/">ABOUT</a>
+                                  <a href="/sobre">SOBRE</a>
                               </div>
                               <div className='item-menu'>
-                                  <a href="/">PAGES</a>
+                                  <a href="/">PÁGINAS</a>
                               </div>
                               <div className='item-menu'>
-                                  <a href="/">CONTACT</a>
+                                  <a href="/">CONTATO</a>
                               </div>
                           </div>
                     </div>

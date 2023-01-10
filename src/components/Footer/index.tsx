@@ -9,6 +9,8 @@ import {
 } 
 from 'react-icons/fa';
 
+const payments = require('../../assets/images/payment.png');
+
 export function Footer() {
     return (
         <footer>
@@ -27,7 +29,7 @@ export function Footer() {
                         <FaEnvelope className='icon' />
                         <h6>m&kdelivery@hotmail.com</h6>
                     </div>
-                    <div className="adress-socials d-flex gap-2 mt-4">
+                    <div className="adress-socials d-flex gap-2">
                         <div className="d-flex justify-content-center align-items-center social" 
                             style={{background:'#084f99'}}
                         >
@@ -84,8 +86,10 @@ export function Footer() {
                 </div>
             </div>
 
-            <div className="copyright mt-5 d-flex justify-content-center align-items-center">
+            <div className="copyright mt-5 d-flex justify-content-between align-items-center">
+                <img src={payments} alt="payments" />
                 <p className='mt-4'>&copy;2022 Todos os direitos reservados.</p>
+                
             </div>
         </footer>
     )
