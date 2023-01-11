@@ -3,6 +3,7 @@ import {BsHeart, BsEye, BsSearch} from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api/api';
 import { Filter } from '../Filter';
+import { Pagination } from '../Pagination';
 
 const fiveStar = require('../../assets/images/fivestar.png');
 interface Product {
@@ -24,14 +25,6 @@ export function Products () {
     const startIndex = currentPage * itensPerPage;
     const endIndex = startIndex + itensPerPage;
     const currentItens = products.slice(startIndex, endIndex);
-
-    function handlePreviousPage() {
-        setCurrentPage(currentPage - 1);
-    }
-
-    function handleNextPage() {
-        setCurrentPage(currentPage + 1);
-    }
 
     useEffect(() => {
         api.get('products')
@@ -97,21 +90,13 @@ export function Products () {
                 })}
             </div>
             }
-            
-                <div className="d-flex justify-content-center pagination-products mt-5">
-                    <button onClick={handlePreviousPage}>Anterior</button>
-                    {Array.from(Array(pages), (item, index) => {
-                    return <div key={index}>
-                            <button 
-                                value={index} 
-                                onClick={() => setCurrentPage(index)}
-                            >
-                                { index + 1}
-                            </button>
-                           </div>
-                    })}
-                    <button onClick={handleNextPage}>Próximo</button>
-                </div>
+                <Pagination 
+                    onPages = {pages}
+                    onSetCurrentPage = {setCurrentPage}
+                    onCurrentPage = {currentPage}
+                    onSetItensPerPage = {setItensPerPage}
+                    onItensPerPage = {itensPerPage}
+                />
         </div>
     )
 }
