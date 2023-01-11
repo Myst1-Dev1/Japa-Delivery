@@ -2,9 +2,9 @@ import './style.scss';
 import {BsHeart, BsEye, BsSearch} from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api/api';
+import { Filter } from '../Filter';
 
 const fiveStar = require('../../assets/images/fivestar.png');
-
 interface Product {
     id: number;
     image: string;
@@ -25,16 +25,6 @@ export function Products () {
     const endIndex = startIndex + itensPerPage;
     const currentItens = products.slice(startIndex, endIndex);
 
-    const searchLowerCase = search.toLowerCase();
-
-    function searchProducts() {
-        if(search !== '') {
-            setProducts(filterProducts.filter((e:any) => e.name.toLowerCase().includes(searchLowerCase)))
-        }else {
-            setProducts(filterProducts);
-        }
-    }
-
     function handlePreviousPage() {
         setCurrentPage(currentPage - 1);
     }
@@ -49,16 +39,6 @@ export function Products () {
     }, []);
 
     useEffect(() => {
-        api.get('products')
-        .then(response => setFilterProducts(response.data.products));
-    }, []);
-
-    useEffect(() => {
-        searchProducts();
-        // eslint-disable-next-line
-    }, [search])
-
-    useEffect(() => {
         setItensPerPage(itensPerPage);
         // eslint-disable-next-line
     }, [])
@@ -68,11 +48,12 @@ export function Products () {
             <div className='container'>
                 <h2 className='mb-4'>Produtos Populares</h2>
                 <div className='input-box d-flex align-items-center'>
-                    <input 
-                        type="text" 
-                        placeholder='Pesquisar'
-                        value={search}
-                        onChange={(e: any) => setSearch(e.target.value)}    
+                    <Filter 
+                        searchProducts = {search} 
+                        setSearchProducts = {setSearch}
+                        onSetProducts = {setProducts}
+                        onFilterProducts = {filterProducts}
+                        onSetFilterProducts = {setFilterProducts}
                     />
                     <div className="input-icon">
                         <BsSearch/>
@@ -80,7 +61,10 @@ export function Products () {
                 </div>
             </div>
 
-            <div className='product-list container d-flex justify-content-evenly align-items-center mt-5'>
+            {products.length === 0 ?
+            <p className='mt-5 text-center'>Não há produtos que correspondam a sua pesquisa 😭</p> 
+                : 
+                <div className='product-list container d-flex justify-content-evenly align-items-center mt-5'>
                 {currentItens.map(product => {
                     return (
                         <div key={product.id} className="product-box mb-3 m-auto d-flex flex-column justify-content-center align-items-center gap-2">
@@ -112,6 +96,7 @@ export function Products () {
                     )
                 })}
             </div>
+            }
             
                 <div className="d-flex justify-content-center pagination-products mt-5">
                     <button onClick={handlePreviousPage}>Anterior</button>
@@ -125,9 +110,6 @@ export function Products () {
                             </button>
                            </div>
                     })}
-                            {/* <div>{currentPage > 1 && (
-                                <div><button>...</button></div>
-                            )}</div> */}
                     <button onClick={handleNextPage}>Próximo</button>
                 </div>
         </div>
