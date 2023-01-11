@@ -74,10 +74,10 @@ export function Header() {
                     <nav>
                         <ul className='d-flex align-items-center m-auto'>
                             <li><a href="/">INICIO</a></li>
-                            <li><a href="/">LOJA</a></li>
+                            <li><a href="/loja">LOJA</a></li>
                             <li><a href="/sobre">SOBRE</a></li>
                             <li><a href="/">PÁGINAS</a></li>
-                            <li><a href="/">CONTATO</a></li>
+                            <li><a href="/contato">CONTATO</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -109,7 +109,7 @@ export function Header() {
                                   <a href="/">INICIO</a>
                               </div>
                               <div className="item-menu">
-                                  <a href="/">LOJA</a>
+                                  <a href="/loja">LOJA</a>
                               </div>
                               <div className='item-menu'>
                                   <a href="/sobre">SOBRE</a>
@@ -118,7 +118,7 @@ export function Header() {
                                   <a href="/">PÁGINAS</a>
                               </div>
                               <div className='item-menu'>
-                                  <a href="/">CONTATO</a>
+                                  <a href="/contato">CONTATO</a>
                               </div>
                           </div>
                     </div>

@@ -6,6 +6,8 @@ import { Home } from "./pages/Home";
 import { Header } from './components/Header';
 import { useEffect, useState } from 'react';
 import { About } from './pages/About';
+import { Contact } from './pages/Contact';
+import { Footer } from './components/Footer';
 
 const loadingImage = require('./assets/images/loading.gif');
 
@@ -31,8 +33,10 @@ function App() {
             <Route element={<Login />} path="/login" />
             <Route element={<SignUp />} path="/signup"/>
             <Route element={<About />} path="/sobre" />
+            <Route element={<Contact />} path="/contato" />
           </Routes>
           </BrowserRouter>
+          <Footer />
       </div>
       }
     </>

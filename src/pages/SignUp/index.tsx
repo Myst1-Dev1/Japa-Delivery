@@ -1,5 +1,4 @@
 import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
 import { Input } from '../../components/FormInput';
 import './style.scss';
 
@@ -16,7 +15,6 @@ export function SignUp() {
             <Button className="w-100">Registrar</Button>
             <h6>Já possuí uma conta? <a href="/login">Entrar</a></h6>
            </div>
-           <Footer />
         </div>
     )
 }

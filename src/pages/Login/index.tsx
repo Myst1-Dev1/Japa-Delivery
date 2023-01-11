@@ -1,5 +1,4 @@
 import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
 import { Input } from '../../components/FormInput';
 import './style.scss';
 
@@ -15,7 +14,6 @@ export function Login() {
                 <h6>Esqueceu a senha?</h6>
                 <h6>Não tem uma conta? <a href="/signup">Criar conta</a></h6>
             </div>
-            <Footer />
         </div>
     )
 }

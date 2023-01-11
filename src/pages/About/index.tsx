@@ -1,6 +1,5 @@
 import { BsCoin, BsEnvelope, BsHeadphones, BsTruck } from 'react-icons/bs';
 import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import './style.scss';
 const japaneseCook = require('../../assets/images/japanese-cook.png');
@@ -110,7 +109,6 @@ export function About() {
                     })}
                 </div>
             </div>
-            <Footer />
         </>
     )
 }
