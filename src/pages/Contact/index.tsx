@@ -5,10 +5,10 @@ import { Button } from '../../components/Button';
 export function Contact() {
     return(
         <div className='contact-page container mt-5 mb-5'>
-            <div className='contact-container d-flex justify-content-between align-items-center'>
+            <div className='contact-container d-flex justify-content-evenly align-items-center'>
                 <div className="contact-form">
                 <h2>Entrar em contato</h2>
-                    <div className='d-flex gap-4 justify-content-between align-items-center mb-2'>
+                    <div className='input-content d-flex gap-3 justify-content-between align-items-center mb-2'>
                         <div className='input-box d-flex align-items-center mt-3'>
                             <input type="text" placeholder='Nome' />
                             <FaUser className='icon' />
@@ -18,7 +18,7 @@ export function Contact() {
                             <FaEnvelope className='icon' />
                         </div>
                     </div>
-                    <div className='d-flex gap-4 justify-content-between align-items-center'>
+                    <div className='input-content d-flex gap-3 justify-content-between align-items-center'>
                         <div className='input-box d-flex align-items-center mt-3'>
                             <input type="number" placeholder='Telephone' />
                             <FaMobileAlt className='icon' />

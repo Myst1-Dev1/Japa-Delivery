@@ -1,48 +1,43 @@
-import {useEffect} from 'react';
+import { useState ,useEffect } from 'react';
 import { api } from '../../services/api/api';
 
 interface FilterProps{
-    searchProducts: string;
-    setSearchProducts:any;
     onSetProducts: any;
-    onFilterProducts: any;
-    onSetFilterProducts:any;
 }
 
 export function Filter({
-    searchProducts, 
-    setSearchProducts, 
-    onSetProducts,
-    onFilterProducts,
-    onSetFilterProducts}
+    onSetProducts}
     : FilterProps) {
+    
+    const [search, setSearch] = useState('');
+    const [filterProducts, setFilterProducts] = useState([]);
 
-    const searchLowerCase = searchProducts.toLowerCase();
+    const searchLowerCase = search.toLowerCase();
     function searchProduct() {
-        if(searchProducts !== '') {
-            onSetProducts(onFilterProducts.filter((e:any) => e.name.toLowerCase().includes(searchLowerCase)))
+        if(search !== '') {
+            onSetProducts(filterProducts.filter((e:any) => e.name.toLowerCase().includes(searchLowerCase)))
         }else {
-            onSetProducts(onFilterProducts);
+            onSetProducts(filterProducts);
         }
     }
 
     useEffect(() => {
         api.get('products')
-        .then(response => onSetFilterProducts(response.data.products));
+        .then(response => setFilterProducts(response.data.products));
         // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
         searchProduct();
         // eslint-disable-next-line
-    }, [searchProducts])
+    }, [search])
 
     return (
         <input 
         type="text" 
         placeholder='Pesquisar'
-        value={searchProducts}
-        onChange={(e: any) => setSearchProducts(e.target.value)}
+        value={search}
+        onChange={(e: any) => setSearch(e.target.value)}
         />
     )
 }

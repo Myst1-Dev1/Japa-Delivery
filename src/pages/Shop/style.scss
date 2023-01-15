@@ -1,0 +1,55 @@
+.shop-page {
+
+    .shop-banner {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)),url(../../assets/images/shop-banner.png);
+        width: 100%;
+        min-height: 70vh;
+        background-size: cover;
+
+        .shop-banner-subtitles {
+
+            h2 {
+                color: var(--red-500);
+                font-size: 4rem;
+            }
+
+            p {
+                color:var(--text-white);
+                a {
+                    color: var(--text-white);
+                    transition: color 0.3s;
+                    &:hover {
+                        color: var(--red-500);
+                    }
+                }
+
+                span {
+                    color: var(--red-500);
+                }
+            }
+        }
+    }
+
+    .shop-container {
+ 
+        .input-box {
+            width: 18rem;
+            box-shadow: 0 0 0.1rem #000;
+            border-radius: 0.3rem;
+            margin: auto;
+
+            input {
+                border: none;   
+            }
+
+            .input-icon {
+                padding: 0.8rem;
+                z-index: 1000;
+            }
+        }
+
+        .product-list {
+            flex-wrap: wrap;
+        }
+    }
+}

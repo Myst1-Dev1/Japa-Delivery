@@ -32,6 +32,8 @@
     
         .header-icons {
             width: 7rem;
+            position: relative;
+            gap: 2rem;
     
             .icon {
                 font-size: 1.7rem;
@@ -40,6 +42,15 @@
     
                 &:hover {
                     color: var(--red-500);
+                }
+
+                .items-in-cart {
+                    position: absolute;
+                    top: 0.1rem;
+                    right: 4.6rem;
+                    p {
+                        font-size: 0.9rem;
+                    }
                 }
 
                 a {

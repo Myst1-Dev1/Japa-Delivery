@@ -2,7 +2,6 @@ import './style.scss';
 import { Products } from '../../components/Products';
 import { Button } from '../../components/Button';
 import { DealsHotProduct } from '../../components/DealsHotProduct';
-import { Footer } from '../../components/Footer';
 
 const bannerImg = require('../../assets/images/banner-image.png');
 const testimonial1 = require('../../assets/images/testimonial-1.jpg');
@@ -87,7 +86,6 @@ export function Home() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

@@ -8,7 +8,6 @@
         flex-wrap: wrap;
         .contact-form {
             max-width: 40rem;
-            flex: 1;
     
             .input-box {
                 width: 100%;
@@ -20,16 +19,10 @@
                 }
     
                 // O código abaixo foi utilizado para remover as arrows do input number
-                input::-webkit-outer-spin-button,
-                input::-webkit-inner-spin-button {
+                input[type=number]::-webkit-inner-spin-button { 
                     -webkit-appearance: none;
-                    margin: 0;
+                    
                 }
-    
-                input[type=number] {
-                    -moz-appearance: textfield;
-                  }
-                //
     
                 .icon {
                     color: var(--red-500);
@@ -80,6 +73,21 @@
 
             p {
                 color: var(--gray-200);
+            }
+        }
+    }
+}
+
+@media(max-width:750px) {
+    .contact-page {
+        .contact-form {
+            display: flex;
+            flex-direction: column!important;
+            width: 100%;
+    
+            .input-content {
+                display: flex;
+                flex-direction: column;
             }
         }
     }

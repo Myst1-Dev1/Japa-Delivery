@@ -134,7 +134,7 @@ export function DealsHotProduct ({countDownTimeStampMs}: DealsHotProps ) {
                 </div>
                 <div className='top-selling-products'>
                     <h4 className='mb-4'>Produtos mais vendidos</h4>
-                    <div className='d-flex flex-column gap-4 mt-3'>
+                    <div className='d-flex flex-column'>
                         {topSellingProducts.map(product => {
                             return (
                                 <div key={product.id} className="product-box d-flex align-items-center gap-2">
