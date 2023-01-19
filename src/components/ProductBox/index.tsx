@@ -10,10 +10,16 @@ interface ProductBoxProps {
     productPrice: number;
     productDeletedPrice: number;
     onProducts:any
+    onProductOpenCart:() => void
 }
 
-export function ProductBox({ productImage, productName, productPrice, productDeletedPrice, onProducts }: ProductBoxProps) {
+export function ProductBox({ productImage, productName, productPrice, productDeletedPrice, onProducts,onProductOpenCart }: ProductBoxProps) {
     const { addItem } = useCart();
+
+    function handleAddProduct(){
+        addItem(onProducts);
+        onProductOpenCart();
+    }
 
     return (
         <div className="product-box mb-3 m-auto d-flex flex-column justify-content-center align-items-center gap-2">
@@ -34,7 +40,7 @@ export function ProductBox({ productImage, productName, productPrice, productDel
                     }).format(productDeletedPrice)}
                 </del>
             </p>
-            <button onClick={() => addItem(onProducts)}>Add To Cart</button>
+            <button onClick={handleAddProduct}>Add To Cart</button>
             <div className='product-icon d-flex flex-column gap-2'>
                 <BsHeart />
             </div>

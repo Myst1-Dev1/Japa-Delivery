@@ -1,7 +1,9 @@
 import './style.scss';
+
 import { Products } from '../../components/Products';
 import { Button } from '../../components/Button';
 import { DealsHotProduct } from '../../components/DealsHotProduct';
+
 
 const bannerImg = require('../../assets/images/banner-image.png');
 const testimonial1 = require('../../assets/images/testimonial-1.jpg');
@@ -9,7 +11,12 @@ const testimonial2 = require('../../assets/images/testimonial-2.jpg');
 const testimonial3 = require('../../assets/images/testimonial-3.jpeg');
 const fivestar = require('../../assets/images/fivestar.png');
 
-export function Home() {
+interface HomeProps {
+    onHandleOpenCart:() => void;
+}
+
+export function Home({ onHandleOpenCart }: HomeProps) {
+   
 
     return (
         <div className='home-page'>
@@ -28,7 +35,7 @@ export function Home() {
                     <img src={bannerImg} alt="" />
                 </div>
             </div>
-            <Products />
+            <Products onOpenCart= {onHandleOpenCart} />
             <DealsHotProduct countDownTimeStampMs={2230686000000} />
             <div className='summer-sale d-flex justify-content-start align-items-center container mt-5 mb-5'>
                 <div className="summer-sale-subtitles d-flex ms-5 flex-column">

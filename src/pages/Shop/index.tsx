@@ -13,7 +13,11 @@ interface allProduct {
     deletedPrice: number;
 }
 
-export function Shop() {
+interface ShopProps {
+    onHandleOpenCart:() => void
+}
+
+export function Shop({ onHandleOpenCart }: ShopProps) {
     const [allProducts, setAllProducts] = useState<allProduct[]>([])
     const [itensPerPage, setItensPerPage] = useState(6);
     const [currentPage, setCurrentPage] = useState(0);
@@ -79,7 +83,8 @@ export function Shop() {
                     {currentItens.map(product => {
                         return (
                             <div key={product.id}>
-                                <ProductBox 
+                                <ProductBox
+                                    onProductOpenCart = {onHandleOpenCart}
                                     productImage={product.image}
                                     productName={product.name}
                                     productPrice={product.price}

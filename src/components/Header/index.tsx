@@ -3,25 +3,23 @@ import { BsHeart, BsPerson, BsCart } from 'react-icons/bs';
 import { HiBars3 } from 'react-icons/hi2';
 import { IoMdClose } from 'react-icons/io'
 import './style.scss';
-import {Button} from '../../components/Button/index';
 import { useCart } from 'react-use-cart';
 
-export function Header() {
-    const [openCart, setOpenCart] = useState(false);
+interface HeaderProps {
+    onHandleOpenCart: () => void;
+    onHandleCloseCart: () => void;
+    onOpenCart: boolean;
+}
+
+export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: HeaderProps) {
     const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
 
     const {
         items,
         removeItem,
         cartTotal,
+        emptyCart
       } = useCart();
-
-    function handleOpenCart() {
-        setOpenCart(true);
-    }
-    function handleCloseCart() {
-        setOpenCart(false);
-    }
 
     function handleOpenResponsiveMenu() {
         setOpenResponsiveMenu(true);
@@ -29,6 +27,8 @@ export function Header() {
     function handleCloseResponsiveMenu() {
         setOpenResponsiveMenu(false);
     }
+
+
         
     return (
         <div className='header'>
@@ -47,7 +47,7 @@ export function Header() {
 
                 <div className="header-icons d-flex align-items-center">
                     <div className="icon">
-                        <BsCart onClick={handleOpenCart} />
+                        <BsCart onClick={onHandleOpenCart} />
                         <div className="items-in-cart">
                             <p>{items.length}</p>
                         </div>
@@ -88,11 +88,11 @@ export function Header() {
             }
 
             {/* Shopping cart */}
-            {openCart && (
+            {onOpenCart && (
                 <div className="shopping-cart">
                     <div className='cart-box d-flex justify-content-between align-items-center'>
                         <h5>Shopping Cart</h5>
-                        <IoMdClose onClick={handleCloseCart} className='close-cart' />
+                        <IoMdClose onClick={onHandleCloseCart} className='close-cart' />
                     </div>
                     {items.map((item) => {
                         return (
@@ -130,7 +130,8 @@ export function Header() {
                     </div>
                     <div className='button-box'>
                         <button className='view-button'>View Cart</button>
-                        <Button className="w-100 mt-3">Checkout Now</Button>
+                        {/* <Button className="w-100 mt-3">Checkout Now</Button> */}
+                        <p className='mt-2' onClick={emptyCart}>Limpar carrinho</p>
                     </div>
                 </div>
             )}

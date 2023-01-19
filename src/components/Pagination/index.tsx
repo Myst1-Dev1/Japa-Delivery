@@ -1,5 +1,5 @@
 import './style.scss';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 interface PaginationProps {
     onPages: number;

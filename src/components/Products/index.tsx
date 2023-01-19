@@ -14,7 +14,11 @@ export interface Product {
     deletedPrice: number;
 }
 
-export function Products () {
+interface ProductProps {
+    onOpenCart:() => void
+}
+
+export function Products ({ onOpenCart }: ProductProps) {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [itensPerPage, setItensPerPage] = useState(6);
@@ -56,7 +60,8 @@ export function Products () {
                 {currentItens.map(product => {
                     return (
                         <div key={product.id}>
-                            <ProductBox 
+                            <ProductBox
+                                onProductOpenCart={onOpenCart}
                                 productImage={product.image}
                                 productName={product.name}
                                 productPrice={product.price}

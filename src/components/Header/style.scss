@@ -1,11 +1,14 @@
 .header {
     header {
-        padding: 1rem 2rem;
+        padding:1rem 2rem;
         background-color: var(--blackAlpha);
         color: var(--text-white);
         width: 100%;
-    
-    
+        transition: 0.3s;
+        z-index: 1000;
+
+        
+
         h1 {
             font-size:2rem;
             font-family: 'Sevillana', sans-serif;
@@ -49,7 +52,7 @@
                     top: 0.1rem;
                     right: 4.6rem;
                     p {
-                        font-size: 0.9rem;
+                        font-size: 0.75rem;
                     }
                 }
 
@@ -195,6 +198,16 @@
                 filter: brightness(1);
             }
         }
+
+        p {
+           cursor: pointer;
+           transition: 0.3s;
+            color: var(--gray-500);
+
+           &:hover {
+            color: var(--red-500);
+           }
+        }
        }
     }
 }
@@ -213,11 +226,15 @@
             .header-icons {
                 width: 10rem;
                 
-                .icon {
+                // .icon {
                     
-                }
+                // }
                 .icon-responsive {
                     display: block;
+                }
+
+                .items-in-cart {
+                    left: 2rem;
                 }
             }
         }
