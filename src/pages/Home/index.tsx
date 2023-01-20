@@ -17,8 +17,6 @@ interface HomeProps {
 }
 
 export function Home({ onHandleOpenCart }: HomeProps) {
-   
-// export function Home() {   
 
     return (
         <div className='home-page'>

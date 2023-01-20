@@ -24,6 +24,7 @@ export function Filter({
     async function getProducts(){
         const res = await ProductsApi.get();
         setFilterProducts(res.data);
+        // onSetFilterProducts(res.data);
     }
 
     useEffect(() => {

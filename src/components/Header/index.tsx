@@ -67,30 +67,31 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                         <div className="items-in-cart">
                             <p>{items.length}</p>
                         </div>
-                    </div>
-                    <div className="icon ps-2">
-                        <BsHeart style={{fontSize:'20px'}} />
-                    </div>
-                    {
-                        auth.user ? (
-                            <>
+
+                        <div className="icon ps-2">
+                            <BsHeart style={{fontSize:'20px'}} />
+                        </div>
+                        {
+                            auth.user ? (
+                                <>
+                                    <div className="icon ps-2">
+                                        <h6  style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                    </div>
+                                    <div className="icon ps-2">
+                                        <a style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</a>
+                                    </div>
+                                </>
+                            )
+                            :
+                            (
                                 <div className="icon ps-2">
-                                    <h6  style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                    <a href="/login" ><BsPerson style={{fontSize:'20px'}} className='icon' /></a>
                                 </div>
-                                <div className="icon ps-2">
-                                    <a style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</a>
-                                </div>
-                            </>
-                        )
-                        :
-                        (
-                            <div className="icon ps-2">
-                                <a href="/login" ><BsPerson style={{fontSize:'20px'}} className='icon' /></a>
-                            </div>
-                        )
-                    }
-                    <div className="icon icon-responsive">
-                        <HiBars3 onClick={handleOpenResponsiveMenu} />
+                            )
+                        }
+                        <div className="icon icon-responsive">
+                            <HiBars3 onClick={handleOpenResponsiveMenu} />
+                        </div>
                     </div>
                 </div>
             </header>
@@ -165,6 +166,8 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                         {/* <Button className="w-100 mt-3">Checkout Now</Button> */}
                         <p className='mt-2' onClick={emptyCart}>Limpar carrinho</p>
 
+                        <a href="/cart" className='view-button'>View Cart</a>
+                        <Button className="w-100 mt-3">Checkout Now</Button>
                     </div>
                 </div>
             )}
