@@ -5,3 +5,21 @@
         padding-bottom: 7rem;
     }
 }
+
+.message-error{
+    margin-top: 15px;
+    h6{
+        font-weight: 900;
+        color: red;
+        font-size: 13px;
+    }
+}
+
+.message-success{
+    margin-top: 15px;
+    h6{
+        font-weight: 900;
+        color: green;
+        font-size: 13px;
+    }
+}

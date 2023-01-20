@@ -3,7 +3,8 @@ import './style.scss';
 import { Products } from '../../components/Products';
 import { Button } from '../../components/Button';
 import { DealsHotProduct } from '../../components/DealsHotProduct';
-
+// import { useContext } from 'react';
+// import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 const bannerImg = require('../../assets/images/banner-image.png');
 const testimonial1 = require('../../assets/images/testimonial-1.jpg');
@@ -17,6 +18,7 @@ interface HomeProps {
 
 export function Home({ onHandleOpenCart }: HomeProps) {
    
+// export function Home() {   
 
     return (
         <div className='home-page'>

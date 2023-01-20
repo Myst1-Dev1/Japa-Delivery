@@ -1,16 +1,18 @@
 import './style.scss';
-import { BsSearch } from 'react-icons/bs';
+import { BsEye, BsHeart, BsSearch } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api/api';
+import { ProductsApi } from '../../services/api/api';
 import { Filter } from '../Filter';
 import { Pagination } from '../Pagination';
 import { ProductBox } from '../ProductBox';
 
-export interface Product {
-    id: number;
+const fiveStar = require('../../assets/images/fivestar.png');
+interface Product {
+    _id: number;
     image: string;
     name: string;
     price:number;
+    amount: number;
     deletedPrice: number;
 }
 
@@ -29,9 +31,13 @@ export function Products ({ onOpenCart }: ProductProps) {
     const endIndex = startIndex + itensPerPage;
     const currentItens = products.slice(startIndex, endIndex);
 
+    async function getProducts(){
+        const res = await ProductsApi.get();
+        setProducts(res.data);
+    }
+
     useEffect(() => {
-        api.get('products')
-        .then(response => setProducts(response.data.products));
+        getProducts();
     }, []);
 
     useEffect(() => {
@@ -59,15 +65,40 @@ export function Products ({ onOpenCart }: ProductProps) {
                 <div className='product-list container d-flex justify-content-evenly align-items-center mt-5'>
                 {currentItens.map(product => {
                     return (
-                        <div key={product.id}>
-                            <ProductBox
-                                onProductOpenCart={onOpenCart}
-                                productImage={product.image}
-                                productName={product.name}
-                                productPrice={product.price}
-                                productDeletedPrice={product.deletedPrice}
-                                onProducts={product}
-                            />
+                        // <div key={product.id}>
+                        //     <ProductBox
+                        //         onProductOpenCart={onOpenCart}
+                        //         productImage={product.image}
+                        //         productName={product.name}
+                        //         productPrice={product.price}
+                        //         productDeletedPrice={product.deletedPrice}
+                        //         onProducts={product}
+                        //     />
+                        <div key={product._id} className="product-box mb-3 m-auto d-flex flex-column justify-content-center align-items-center gap-2">
+                            <div className="img-container">
+                                <img src={product.image} alt="takoyaki" />
+                            </div>
+                            <img src={fiveStar} alt="five-star" />
+                            <h4>{product.name}</h4>
+                            <p>
+                                <span>{Intl.NumberFormat('pt-br', {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(product.price)}</span> 
+                                <del>
+                                    {Intl.NumberFormat('pt-br', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                    }).format(product.deletedPrice)}
+                                </del>
+                            </p>
+                            <button>Add To Cart</button>
+                            <div className='product-icon d-flex flex-column gap-2'>
+                                <BsHeart />
+                            </div>
+                            <div className="product-open-modal">
+                                <BsEye />
+                            </div>
                         </div>
                     )
                 })}
