@@ -19,11 +19,15 @@ export function Pagination({
     :PaginationProps) {
 
         function handlePreviousPage() {
-            onSetCurrentPage(onCurrentPage - 1);
+            if(onCurrentPage !== 0){
+                onSetCurrentPage(onCurrentPage - 1)
+            };
         }
     
         function handleNextPage() {
-            onSetCurrentPage(onCurrentPage + 1);
+            if(onCurrentPage !== 0){
+                onSetCurrentPage(onCurrentPage + 1);
+            }
         }
 
         useEffect(() => {

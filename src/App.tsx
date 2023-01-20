@@ -9,6 +9,10 @@ import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Shop } from './pages/Shop';
 import { Footer } from './components/Footer';
+import { AuthProvider } from './contexts/Auth/AuthProvider';
+import { Cart } from './pages/Cart';
+import { RequireAuth } from './contexts/Auth/RequireAuth';
+import { DontLogin } from './contexts/Auth/DontLogin';
 
 const loadingImage = require('./assets/images/loading.gif');
 
@@ -33,28 +37,62 @@ function App() {
 
 
   return (
-    <CartProvider>
-      { loading ? <div className='loading-box'><img className='loading' src={loadingImage} alt="loading" /></div> 
-        :
-        <BrowserRouter>
-              <Header 
-                onOpenCart = {openCart} 
-                onHandleOpenCart = {handleOpenCart} 
-                onHandleCloseCart = {handleCloseCart}
-              />
+    //     :
+    //     <BrowserRouter>
+    //           <Header 
+    //             onOpenCart = {openCart} 
+    //             onHandleOpenCart = {handleOpenCart} 
+    //             onHandleCloseCart = {handleCloseCart}
+    //           />
+    //             <Routes>
+
+    //               <Route element={<Login />} path="/login" />
+    //               <Route element={<SignUp />} path="/signup"/>
+    //               <Route element={<About />} path="/sobre" />
+    //               <Route element={<Contact />} path="/contato" />
+
+    //             </Routes>
+    //             <Footer />
+    //     </BrowserRouter>
+    //   :
+    //   <div>
+          
+            
+          
+    //   </div>
+    //   }
+    // </CartProvider>
+<CartProvider>
+    { loading ? <div className='loading-box'><img className='loading' src={loadingImage} alt="loading" /></div>
+    : (
+      <div>
+    <AuthProvider>
+              
+              <BrowserRouter>
+                <Header 
+                  onOpenCart = {openCart} 
+                  onHandleOpenCart = {handleOpenCart} 
+                  onHandleCloseCart = {handleCloseCart}
+                />
                 <Routes>
                   <Route element={<Home onHandleOpenCart = {handleOpenCart} />} path="/"/>
-                  <Route element={<Login />} path="/login" />
+                  <Route element={<DontLogin><Login /></DontLogin>} path="/login" />
                   <Route element={<SignUp />} path="/signup"/>
                   <Route element={<About />} path="/sobre" />
                   <Route element={<Contact />} path="/contato" />
-                  <Route element={<Shop onHandleOpenCart = {handleOpenCart} />} path="/loja" />
+                  <Route element={ <RequireAuth><Cart/></RequireAuth> } path="/cart" />
+                  
+                  {/* <Route element={<Shop onHandleOpenCart = {handleOpenCart} />} path="/loja" /> */}
                 </Routes>
-                <Footer />
-        </BrowserRouter>
-      }
-    </CartProvider>
-  );
+                <Footer></Footer>
+              </BrowserRouter>
+              
+            </AuthProvider>
+      </div>
+    )
 }
 
-export default App;
+</CartProvider>
+  )
+}
+export default App
