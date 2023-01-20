@@ -1,46 +1,17 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsHeart, BsPerson, BsCart } from 'react-icons/bs';
 import { HiBars3 } from 'react-icons/hi2';
 import { IoMdClose } from 'react-icons/io'
 import './style.scss';
 import {Button} from '../../components/Button/index';
-
-// const takoyaki = require('../../assets/images/takoyaki.png');
-// const guioza = require('../../assets/images/guioza.png');
-// const lamen = require('../../assets/images/lamen.png');
-// const harumaki = require('../../assets/images/harumaki.png');
-
-// const cartProduct = [
-//     {
-//         id: 1,
-//         image: `${takoyaki}`,
-//         name: "Takoyaki",
-//         price: 45
-//     },
-//     {
-//         id: 2,
-//         image: `${guioza}`,
-//         name: "Guioza",
-//         price: 12.5
-//     },
-//     {
-//         id: 3,
-//         image: `${lamen}`,
-//         name: "Lámen",
-//         price: 20.7
-//     },
-//     {
-//         id: 4,
-//         image: `${harumaki}`,
-//         name: "Harumaki",
-//         price: 7.5
-//     },  
-// ]
+import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 export function Header() {
     const [openCart, setOpenCart] = useState(false);
     const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
+
+    const auth = useContext(AuthContext);
 
     function handleOpenCart() {
         setOpenCart(true);
@@ -56,15 +27,9 @@ export function Header() {
         setOpenResponsiveMenu(false);
     }
 
-    //     let sum = 0
-    //     for (let i = 0; i < cartProduct.length; i++) {
-    //         sum += cartProduct[i].price;
-    //     }
-
-    // useEffect(() => {
-    //     setTotalPrice(sum);
-    // }, [])
+    useEffect(() => {
         
+    },[auth.user])
 
     return (
         <div className='header'>
@@ -82,16 +47,31 @@ export function Header() {
                     </nav>
                 </div>
 
-                <div className="header-icons d-flex justify-content-between align-items-center">
-                    <div className="icon">
-                        <BsCart onClick={handleOpenCart} />
+                <div className="header-icons d-flex justify-content-between align-items-center me-4">
+                    <div className="icon ">
+                        <BsCart style={{fontSize:'20px'}} onClick={handleOpenCart} />
                     </div>
-                    <div className="icon">
-                        <BsHeart />
+                    <div className="icon ps-2">
+                        <BsHeart style={{fontSize:'20px'}} />
                     </div>
-                    <div className="icon">
-                        <a href="/login"><BsPerson className='icon' /></a>
-                    </div>
+                    {
+                        auth.user ? (
+                            <>
+                                <div className="icon ps-2">
+                                    <h6  style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                </div>
+                                <div className="icon ps-2">
+                                    <a style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</a>
+                                </div>
+                            </>
+                        )
+                        :
+                        (
+                            <div className="icon ps-2">
+                                <a href="/login" ><BsPerson style={{fontSize:'20px'}} className='icon' /></a>
+                            </div>
+                        )
+                    }
                     <div className="icon icon-responsive">
                         <HiBars3 onClick={handleOpenResponsiveMenu} />
                     </div>
@@ -166,7 +146,7 @@ export function Header() {
                         </h5>
                     </div>
                     <div className='button-box'>
-                        <button className='view-button'>View Cart</button>
+                        <a href="/cart" className='view-button'>View Cart</a>
                         <Button className="w-100 mt-3">Checkout Now</Button>
                     </div>
                 </div>

@@ -1,16 +1,17 @@
 import './style.scss';
 import {BsHeart, BsEye, BsSearch} from 'react-icons/bs';
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api/api';
+import { ProductsApi } from '../../services/api/api';
 import { Filter } from '../Filter';
 import { Pagination } from '../Pagination';
 
 const fiveStar = require('../../assets/images/fivestar.png');
 interface Product {
-    id: number;
+    _id: number;
     image: string;
     name: string;
     price:number;
+    amount: number;
     deletedPrice: number;
 }
 
@@ -26,9 +27,13 @@ export function Products () {
     const endIndex = startIndex + itensPerPage;
     const currentItens = products.slice(startIndex, endIndex);
 
+    async function getProducts(){
+        const res = await ProductsApi.get();
+        setProducts(res.data);
+    }
+
     useEffect(() => {
-        api.get('products')
-        .then(response => setProducts(response.data.products));
+        getProducts();
     }, []);
 
     useEffect(() => {
@@ -60,7 +65,7 @@ export function Products () {
                 <div className='product-list container d-flex justify-content-evenly align-items-center mt-5'>
                 {currentItens.map(product => {
                     return (
-                        <div key={product.id} className="product-box mb-3 m-auto d-flex flex-column justify-content-center align-items-center gap-2">
+                        <div key={product._id} className="product-box mb-3 m-auto d-flex flex-column justify-content-center align-items-center gap-2">
                             <div className="img-container">
                                 <img src={product.image} alt="takoyaki" />
                             </div>

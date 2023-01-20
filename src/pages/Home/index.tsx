@@ -2,7 +2,8 @@ import './style.scss';
 import { Products } from '../../components/Products';
 import { Button } from '../../components/Button';
 import { DealsHotProduct } from '../../components/DealsHotProduct';
-import { Footer } from '../../components/Footer';
+// import { useContext } from 'react';
+// import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 const bannerImg = require('../../assets/images/banner-image.png');
 const testimonial1 = require('../../assets/images/testimonial-1.jpg');
@@ -10,7 +11,7 @@ const testimonial2 = require('../../assets/images/testimonial-2.jpg');
 const testimonial3 = require('../../assets/images/testimonial-3.jpeg');
 const fivestar = require('../../assets/images/fivestar.png');
 
-export function Home() {
+export function Home() {   
 
     return (
         <div className='home-page'>
@@ -87,7 +88,6 @@ export function Home() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
