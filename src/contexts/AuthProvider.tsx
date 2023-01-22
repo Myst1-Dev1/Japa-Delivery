@@ -52,7 +52,7 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
     const signOut = async () => {
         localStorage.removeItem('token');
         setUser(null);
-        navigate('/login');
+        // navigate('/login');
     }
 
     return (

@@ -60,7 +60,7 @@ export function Header({ onHandleOpenCart }: HeaderProps) {
                                     <h6 style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
                                 </div>
                                 <div className="icon ps-2">
-                                    <a href='/login' style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</a>
+                                    <p style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</p>
                                 </div>
                             </>
                             )

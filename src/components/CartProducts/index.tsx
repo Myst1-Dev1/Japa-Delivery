@@ -20,6 +20,7 @@ export function CartProduct({
     onHandleCleanCart
     }: CartProductProps) {
     return (
+        
         <div className="cart-container">
             {onOpenCart && (
                 <div className="shopping-cart">
@@ -27,7 +28,9 @@ export function CartProduct({
                         <h5>Shopping Cart</h5>
                         <IoMdClose className='close-cart' onClick={onCloseCart} />
                     </div>
-                        {onShoppingCart.map(item => {
+                        {onShoppingCart.length === 0 ? <p className='mt-2'>Não há produtos em seu carrinho 😭</p> :        
+                        <div>
+                            {onShoppingCart.map(item => {
                             return (
                                 <div>
                                     <div key={item.product._id} className="cart-product d-flex align-items-center gap-2">
@@ -52,18 +55,18 @@ export function CartProduct({
                                 </div>
                             )
                         })}
-                        
-
-                    <div className="totalPrice mt-1 d-flex align-items-center justify-content-between">
-                        <h5>Subtotal</h5>
-                        <h5>
-                            {Intl.NumberFormat('pt-br', {
-                                style: 'currency',
-                                currency: 'BRL'
-                            }).format(onTotalCart)}
-                            
-                        </h5>
-                    </div>
+                        <div className="totalPrice mt-3 d-flex align-items-center justify-content-between">
+                            <h5>Subtotal</h5>
+                            <h5>
+                                {Intl.NumberFormat('pt-br', {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(onTotalCart)}
+                                
+                            </h5>
+                        </div>
+                        </div>
+                        }
                     <div className='button-box'>
                         <button className='view-button'>View Cart</button>
                         <p onClick={onHandleCleanCart} className='mt-2'>Limpar carrinho</p>
