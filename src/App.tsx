@@ -14,7 +14,6 @@ import { Cart } from './pages/Cart';
 import { RequireAuth } from './contexts/RequireAuth';
 const loadingImage = require('./assets/images/loading.gif');
 
-
 function App() {
   const [loading, setLoading] = useState(false);
   const [openCart, setOpenCart] = useState(false);

@@ -25,7 +25,14 @@ export function Login() {
 
             setIsLogged('Usuario logado com sucesso');
             setTimeout(() => {
-                window.location.href = '/';
+
+                if(window.location.href === 'http://localhost:3000/cart'){
+                    return window.location.href = '/cart';
+                }
+                else{
+                    return window.location.href = '/';
+                }
+                
             }, 700);
         }).catch((error) => setError(error));
     }

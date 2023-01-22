@@ -1,22 +1,18 @@
 import { AuthContext } from "./AuthContext"
 import { UserApi } from "../services/api/api";
 import { ReactNode, useEffect, useState } from "react";
-import { IUser } from "../Types/User";import { useNavigate } from "react-router-dom";
+import { IUser } from "../Types/User";
 
 interface AuthProviderProps {
     children: ReactNode;
 }
 
 export const AuthProvider = ( { children }: AuthProviderProps ) => {
-    const navigate = useNavigate();
-
-    // export const AuthProvider = ( { children }: { children: JSX.Element} )
 
     const [user, setUser] = useState< IUser | null >(null);
 
     useEffect(() => {
         validateToken();
-        console.log('user', user)
     },[UserApi])
 
 
@@ -42,22 +38,18 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
             return true;
         }
         else { 
-            console.log('hmmmmm', res)
             return false;
         }
-
         
     }
     
     const signOut = async () => {
         localStorage.removeItem('token');
         setUser(null);
-        // navigate('/login');
     }
 
     return (
         <AuthContext.Provider value={{ user, signIn, signOut }}>
-            {/* { children } */}
             <div>{children}</div>
         </AuthContext.Provider>
     )
