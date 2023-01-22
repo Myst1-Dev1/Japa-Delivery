@@ -20,10 +20,16 @@ export function Pagination({
 
         function handlePreviousPage() {
             onSetCurrentPage(onCurrentPage - 1);
+            if(onCurrentPage === 0) {
+                onSetCurrentPage(onCurrentPage);
+            }
         }
     
         function handleNextPage() {
             onSetCurrentPage(onCurrentPage + 1);
+            if(onCurrentPage === Array(onPages).length - 1) {
+                onSetCurrentPage(onCurrentPage);
+            }
         }
 
         useEffect(() => {

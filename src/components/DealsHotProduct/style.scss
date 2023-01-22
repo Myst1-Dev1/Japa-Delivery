@@ -1,5 +1,6 @@
 .deals-hot {
     flex-wrap: wrap;
+    
     h4 {
         font-weight: bold;
         font-size: 1.4rem;
@@ -10,7 +11,6 @@
             padding: 1rem;
             flex: 1;
             max-width: 100%;
-            height: 100%;
             transition: 0.3s;
 
         .deals-hot-content {
@@ -100,8 +100,7 @@
     }
 
     .top-selling-products {
-        height: 100%;
-        width: 20rem;
+        max-width: 100%;
         padding: 1rem;
         box-shadow: 0 0 0.1rem #000;
 

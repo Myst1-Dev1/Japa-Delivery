@@ -1,25 +1,20 @@
-import { useState} from 'react';
+import { useState, useContext, useEffect} from 'react';
 import { BsHeart, BsPerson, BsCart } from 'react-icons/bs';
 import { HiBars3 } from 'react-icons/hi2';
 import { IoMdClose } from 'react-icons/io'
 import './style.scss';
-import { useCart } from 'react-use-cart';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+
 
 interface HeaderProps {
     onHandleOpenCart: () => void;
-    onHandleCloseCart: () => void;
-    onOpenCart: boolean;
 }
 
-export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: HeaderProps) {
+export function Header({ onHandleOpenCart }: HeaderProps) {
     const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
 
-    const {
-        items,
-        removeItem,
-        cartTotal,
-        emptyCart
-      } = useCart();
+      const auth = useContext(AuthContext);
 
     function handleOpenResponsiveMenu() {
         setOpenResponsiveMenu(true);
@@ -28,6 +23,9 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
         setOpenResponsiveMenu(false);
     }
 
+    useEffect(() => {
+
+    },[auth.user]);
 
         
     return (
@@ -37,10 +35,10 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                 <div className="navBar d-flex justify-content-between align-items-center">
                     <nav>
                         <ul className='d-flex align-items-center m-auto'>
-                            <li><a href="/">INICIO</a></li>
-                            <li><a href="/loja">LOJA</a></li>
-                            <li><a href="/sobre">SOBRE</a></li>
-                            <li><a href="/contato">CONTATO</a></li>
+                            <li><Link to="/">INICIO</Link></li>
+                            <li><Link to="/loja">LOJA</Link></li>
+                            <li><Link to="/sobre">SOBRE</Link></li>
+                            <li><Link to="/contato">CONTATO</Link></li>
                         </ul>
                     </nav>
                 </div>
@@ -48,16 +46,31 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                 <div className="header-icons d-flex align-items-center">
                     <div className="icon">
                         <BsCart onClick={onHandleOpenCart} />
-                        <div className="items-in-cart">
-                            <p>{items.length}</p>
-                        </div>
+                        {/* <div className="items-in-cart">
+                            <p>0</p>
+                        </div> */}
                     </div>
                     <div className="icon">
-                        <BsHeart />
+                       <Link to="/favorites"> <BsHeart /> </Link>
                     </div>
-                    <div className="icon">
-                        <a href="/login"><BsPerson className='icon' /></a>
-                    </div>
+                    {
+                        auth.user ? (
+                            <>
+                                <div className="icon ps-2">
+                                    <h6 style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                </div>
+                                <div className="icon ps-2">
+                                    <a href='/login' style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</a>
+                                </div>
+                            </>
+                            )
+                            :
+                            (
+                                <div className="icon">
+                                    <Link to="/login" ><BsPerson style={{fontSize:'1.7rem'}} className='icon' /></Link>
+                                </div>
+                            )
+                    }
                     <div className="icon icon-responsive">
                         <HiBars3 onClick={handleOpenResponsiveMenu} />
                     </div>
@@ -72,23 +85,23 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                             <IoMdClose onClick={handleCloseResponsiveMenu} className='close-responsive-menu' />
                           <div className='navBar-responsive d-flex flex-column mt-5 gap-2'>
                               <div className="item-menu">
-                                  <a href="/">INICIO</a>
+                                  <Link to="/">INICIO</Link>
                               </div>
                               <div className="item-menu">
-                                  <a href="/loja">LOJA</a>
+                                  <Link to="/loja">LOJA</Link>
                               </div>
                               <div className='item-menu'>
-                                  <a href="/sobre">SOBRE</a>
+                                  <Link to="/sobre">SOBRE</Link>
                               </div>
                               <div className='item-menu'>
-                                  <a href="/contato">CONTATO</a>
+                                  <Link to="/contato">CONTATO</Link>
                               </div>
                           </div>
                     </div>
             }
 
             {/* Shopping cart */}
-            {onOpenCart && (
+            {/* {onOpenCart && (
                 <div className="shopping-cart">
                     <div className='cart-box d-flex justify-content-between align-items-center'>
                         <h5>Shopping Cart</h5>
@@ -96,22 +109,22 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                     </div>
                     {items.map((item) => {
                         return (
-                            <div key={item.id}>
+                            <div key={item.product._id}>
                                 <div className="cart-product d-flex align-items-center gap-2">
                                     <div className="cart-img">
-                                        <img src={item.image} alt="food-name" />
+                                        <img src={item.product.image} alt="food-name" />
                                     </div>
                                     <div>
-                                        <h6>{item.name}</h6>
+                                        <h6>{item.product.name}</h6>
                                         <div className='cart-remove d-flex justify-content-between'>
                                             <p>
                                                 {Intl.NumberFormat('pt-br', {
                                                     style: 'currency',
                                                     currency: 'BRL'
-                                                }).format(item.price)}
+                                                }).format(item.product.price)}
                                             </p>
                                             <div  className='remove-product d-flex justify-content-center align-items-center'>
-                                                <IoMdClose onClick={() => removeItem(item.id)}/>
+                                                <IoMdClose onClick={() => removeItem(item.product._id)}/>
                                             </div>
                                         </div>
                                     </div>
@@ -130,11 +143,10 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                     </div>
                     <div className='button-box'>
                         <button className='view-button'>View Cart</button>
-                        {/* <Button className="w-100 mt-3">Checkout Now</Button> */}
                         <p className='mt-2' onClick={emptyCart}>Limpar carrinho</p>
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     )
 }

@@ -7,3 +7,11 @@
         box-shadow: 0 0 0.1rem #000;
     }
    }
+
+@media(max-width:320px) {
+    .pagination-products {
+        button {
+            font-size: 0.6rem;
+        }
+    }
+}

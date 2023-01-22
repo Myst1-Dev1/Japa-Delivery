@@ -4,10 +4,11 @@ import './style.scss';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
     className?: any;
+    event?: any;
 }
 
-export function Button({children, className}: ButtonProps) {
+export function Button({children, className, event}: ButtonProps) {
     return (
-        <button className={className}>{children}</button>
+        <button onClick={event} className={className}>{children}</button>
     )
 }

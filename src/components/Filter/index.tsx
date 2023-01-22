@@ -1,5 +1,5 @@
 import { useState ,useEffect } from 'react';
-import { api } from '../../services/api/api';
+import { ProductsApi } from '../../services/api/api';
 
 interface FilterProps{
     onSetProducts: any;
@@ -21,11 +21,20 @@ export function Filter({
         }
     }
 
+    async function getProducts() {
+        const res = await ProductsApi.get();
+        setFilterProducts(res.data);
+    }
+
     useEffect(() => {
-        api.get('products')
-        .then(response => setFilterProducts(response.data.products));
-        // eslint-disable-next-line
+        getProducts()
     }, []);
+
+    // useEffect(() => {
+    //     ProductsApi.get()
+    //     .then(response => setFilterProducts(response.data.products));
+    //     // eslint-disable-next-line
+    // }, []);
 
     useEffect(() => {
         searchProduct();

@@ -1,6 +1,6 @@
 import './style.scss';
 import {BsHeart, BsEye} from 'react-icons/bs';
-import { useCart } from 'react-use-cart'
+import { Product } from '../../Types/Product';
 
 const fiveStar = require('../../assets/images/fivestar.png');
 
@@ -9,15 +9,25 @@ interface ProductBoxProps {
     productName: string;
     productPrice: number;
     productDeletedPrice: number;
-    onProducts:any
-    onProductOpenCart:() => void
+    onProducts:Product;
+    onProductOpenCart:() => void;
+    onAddToCart:(id:string) => void;
 }
 
-export function ProductBox({ productImage, productName, productPrice, productDeletedPrice, onProducts,onProductOpenCart }: ProductBoxProps) {
-    const { addItem } = useCart();
+export function ProductBox({ 
+    productImage, 
+    productName, 
+    productPrice, 
+    productDeletedPrice, 
+    onProducts, 
+    onProductOpenCart,
+    onAddToCart
+
+}: ProductBoxProps) {
+
 
     function handleAddProduct(){
-        addItem(onProducts);
+        onAddToCart(onProducts._id)
         onProductOpenCart();
     }
 
@@ -32,7 +42,7 @@ export function ProductBox({ productImage, productName, productPrice, productDel
                 <span>{Intl.NumberFormat('pt-br', {
                     style: 'currency',
                     currency: 'BRL'
-                }).format(productPrice)}</span> 
+                }).format(productPrice)}</span>
                 <del>
                     {Intl.NumberFormat('pt-br', {
                         style: 'currency',
@@ -42,7 +52,7 @@ export function ProductBox({ productImage, productName, productPrice, productDel
             </p>
             <button onClick={handleAddProduct}>Add To Cart</button>
             <div className='product-icon d-flex flex-column gap-2'>
-                <BsHeart />
+                <BsHeart className='heart-icon' />
             </div>
             <div className="product-open-modal">
                 <BsEye />

@@ -13,9 +13,11 @@ const fivestar = require('../../assets/images/fivestar.png');
 
 interface HomeProps {
     onHandleOpenCart:() => void;
+    onOpenCart:boolean;
+    onHandleCloseCart:() => void;
 }
 
-export function Home({ onHandleOpenCart }: HomeProps) {
+export function Home({ onHandleOpenCart, onOpenCart, onHandleCloseCart }: HomeProps) {
    
 
     return (
@@ -35,7 +37,11 @@ export function Home({ onHandleOpenCart }: HomeProps) {
                     <img src={bannerImg} alt="" />
                 </div>
             </div>
-            <Products onOpenCart= {onHandleOpenCart} />
+            <Products 
+                onOpenCart= {onHandleOpenCart} 
+                onOpenCartProducts = {onOpenCart}
+                onCloseCartProducts = {onHandleCloseCart} 
+            />
             <DealsHotProduct countDownTimeStampMs={2230686000000} />
             <div className='summer-sale d-flex justify-content-start align-items-center container mt-5 mb-5'>
                 <div className="summer-sale-subtitles d-flex ms-5 flex-column">

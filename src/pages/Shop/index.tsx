@@ -1,24 +1,17 @@
 import './style.scss';
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
-import { api } from '../../services/api/api';
+import { ProductsApi } from '../../services/api/api';
 import { ProductBox } from '../../components/ProductBox';
 import { Pagination } from '../../components/Pagination';
-
-interface allProduct {
-    id: number;
-    image: string;
-    name: string;
-    price:number;
-    deletedPrice: number;
-}
+import { Product } from '../../Types/Product';
 
 interface ShopProps {
     onHandleOpenCart:() => void
 }
 
 export function Shop({ onHandleOpenCart }: ShopProps) {
-    const [allProducts, setAllProducts] = useState<allProduct[]>([])
+    const [allProducts, setAllProducts] = useState<Product[]>([])
     const [itensPerPage, setItensPerPage] = useState(6);
     const [currentPage, setCurrentPage] = useState(0);
     const [search, setSearch] = useState('');
@@ -38,13 +31,22 @@ export function Shop({ onHandleOpenCart }: ShopProps) {
         }
     }
 
-    useEffect(() => {
-        api.get('allProducts')
-        .then(response => setAllProducts(response.data.allProducts));
-    }, [])
+    async function getProducts() {
+        const res = await ProductsApi.get();
+        setAllProducts(res.data);
+    }
 
     useEffect(() => {
-        api.get('allProducts')
+        getProducts();
+    }, [])
+
+    // useEffect(() => {
+    //     ProductsApi.get()
+    //     .then(response => setAllProducts(response.data.allProducts));
+    // }, [])
+
+    useEffect(() => {
+        ProductsApi.get()
         .then(response => setFilterProducts(response.data.allProducts));
         // eslint-disable-next-line
     }, []);
@@ -80,9 +82,9 @@ export function Shop({ onHandleOpenCart }: ShopProps) {
                     <p className='mt-5 text-center'>Não há produtos que correspondam a sua pesquisa 😭</p> 
                     : 
                     <div className='product-list mt-5 d-flex justify-content-evenly align-items-center container'>
-                    {currentItens.map(product => {
+                    {/* {currentItens.map(product => {
                         return (
-                            <div key={product.id}>
+                            <div key={product._id}>
                                 <ProductBox
                                     onProductOpenCart = {onHandleOpenCart}
                                     productImage={product.image}
@@ -93,7 +95,7 @@ export function Shop({ onHandleOpenCart }: ShopProps) {
                                 />
                             </div>
                         )
-                    })}
+                    })} */}
                 </div>
                 }
 

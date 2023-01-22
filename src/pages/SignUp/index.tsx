@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/FormInput';
 import './style.scss';
@@ -21,7 +22,7 @@ export function SignUp() {
                 <Input name='confirmarSenha' type = "password" placeholder='Confirmar senha' />
                 <Button className="w-100">Registrar</Button>
             </form>
-            <h6>Já possuí uma conta? <a href="/login">Entrar</a></h6>
+            <h6>Já possuí uma conta? <Link to="/login">Entrar</Link></h6>
            </div>
         </div>
     )

@@ -4,4 +4,22 @@
         max-width: 20rem;
         padding-bottom: 7rem;
     }
+
+    .message-error{
+        margin-top: 0.9rem;
+        h6{
+            font-weight: 900;
+            color: #d50000;
+            font-size: 13px;
+        }
+    }
+    
+    .message-success{
+        margin-top: 15px;
+        h6{
+            font-weight: 900;
+            color: #00e676;
+            font-size: 0.7rem;
+        }
+    }
 }

@@ -1,12 +1,34 @@
-import { useState} from 'react';
+import { useContext, useState, FormEvent} from 'react';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/FormInput';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+
 import './style.scss';
 
 export function Login() {
+    const auth = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState<any>(null)
+    const [isLogged, setIsLogged] = useState<string | null>(null);
+
+    const handleSubmit = async (e:FormEvent) => {
+        e.preventDefault();
+
+        setIsLogged(null);
+        setError(null);
+
+        await auth.signIn(email, password)
+        .then(() => {
+
+            setIsLogged('Usuario logado com sucesso');
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 700);
+        }).catch((error) => setError(error));
+    }
 
 
     return (
@@ -17,21 +39,37 @@ export function Login() {
                     name='email' 
                     type="email" 
                     placeholder='E-mail'
-                    required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
+                    required
                 />
                 <Input 
                     name='senha' 
                     type="password" 
                     placeholder='Senha'
-                    required
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={e => setPassword(e.target.value)}
+                    required
                 />
-                <Button type='submit' className="w-100">Entrar</Button>
+                <Button className="w-100" event={handleSubmit}>Entrar</Button>
                 <h6>Esqueceu a senha?</h6>
-                <h6>Não tem uma conta? <a href="/signup">Criar conta</a></h6>
+                <h6>Não tem uma conta? <Link to="/signup">Criar conta</Link></h6>
+                {
+                    error && 
+                        <>
+                            <div className='message-error'>
+                                <h6>{error.response.data}</h6>
+                            </div>
+                        </>
+                }
+                {
+                    isLogged && 
+                        <>
+                            <div className='message-success'>
+                                <h6>{isLogged}</h6>
+                            </div>
+                        </>
+                }
             </form>
         </div>
     )

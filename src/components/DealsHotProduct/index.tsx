@@ -2,6 +2,7 @@ import './style.scss';
 import {MdAdd, MdRemove, MdShoppingCart} from 'react-icons/md'
 import { useEffect, useState } from 'react';
 import { getRemainingTimeUntilMsTimeStamp } from '../../utils/countDownTimerUtil';
+import { useCart } from 'react-use-cart';
 
 const harumaki = require('../../assets/images/harumaki.png');
 const fiveStar = require('../../assets/images/fivestar.png')
@@ -20,6 +21,14 @@ interface DealsHotProps {
 }
 
 export function DealsHotProduct ({countDownTimeStampMs}: DealsHotProps ) {
+
+    const { addItem,
+            items,
+            removeItem,
+            cartTotal,
+            emptyCart
+            } 
+     = useCart();
 
     const defaultRemainingTime:defaultRemainingTimeProps = {
         seconds: '00',

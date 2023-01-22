@@ -14,7 +14,7 @@ const payments = require('../../assets/images/payment.png');
 export function Footer() {
     return (
         <footer>
-            <div className='footer-container d-flex justify-content-evenly align-items-center'>
+            <div className='footer-container d-flex justify-content-evenly align-items-center m-auto'>
                 <div className='adress mt-3'>
                     <h5>Nosso endereço</h5>
                     <div className='adress-box d-flex gap-2'>
