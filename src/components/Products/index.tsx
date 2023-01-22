@@ -5,16 +5,7 @@ import { ProductsApi } from '../../services/api/api';
 import { Filter } from '../Filter';
 import { Pagination } from '../Pagination';
 import { ProductBox } from '../ProductBox';
-
-const fiveStar = require('../../assets/images/fivestar.png');
-interface Product {
-    _id: number;
-    image: string;
-    name: string;
-    price:number;
-    amount: number;
-    deletedPrice: number;
-}
+import { IProduct } from '../../types/Product';
 
 interface ProductProps {
     onOpenCart:() => void
@@ -22,7 +13,7 @@ interface ProductProps {
 
 export function Products ({ onOpenCart }: ProductProps) {
 
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<IProduct[]>([]);
     const [itensPerPage, setItensPerPage] = useState(6);
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -63,42 +54,18 @@ export function Products ({ onOpenCart }: ProductProps) {
                 <p className='mt-5 text-center'>Não há produtos que correspondam a sua pesquisa 😭</p> 
                 : 
                 <div className='product-list container d-flex justify-content-evenly align-items-center mt-5'>
-                {currentItens.map(product => {
+                {currentItens.map((product: IProduct) => {
                     return (
-                        // <div key={product.id}>
-                        //     <ProductBox
-                        //         onProductOpenCart={onOpenCart}
-                        //         productImage={product.image}
-                        //         productName={product.name}
-                        //         productPrice={product.price}
-                        //         productDeletedPrice={product.deletedPrice}
-                        //         onProducts={product}
-                        //     />
-                        <div key={product._id} className="product-box mb-3 m-auto d-flex flex-column justify-content-center align-items-center gap-2">
-                            <div className="img-container">
-                                <img src={product.image} alt="takoyaki" />
-                            </div>
-                            <img src={fiveStar} alt="five-star" />
-                            <h4>{product.name}</h4>
-                            <p>
-                                <span>{Intl.NumberFormat('pt-br', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                }).format(product.price)}</span> 
-                                <del>
-                                    {Intl.NumberFormat('pt-br', {
-                                        style: 'currency',
-                                        currency: 'BRL'
-                                    }).format(product.deletedPrice)}
-                                </del>
-                            </p>
-                            <button>Add To Cart</button>
-                            <div className='product-icon d-flex flex-column gap-2'>
-                                <BsHeart />
-                            </div>
-                            <div className="product-open-modal">
-                                <BsEye />
-                            </div>
+                        <div key={product._id}>
+                            <ProductBox
+                                onProductOpenCart={onOpenCart}
+                                productImage={product.image}
+                                productName={product.name}
+                                productPrice={product.price}
+                                productDeletedPrice={product.deletedPrice}
+                                onAmount={product.amount}
+                                onProducts={product}
+                            />
                         </div>
                     )
                 })}

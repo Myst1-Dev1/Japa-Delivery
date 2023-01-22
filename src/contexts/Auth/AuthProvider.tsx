@@ -35,7 +35,6 @@ export const AuthProvider = ( { children }: { children: JSX.Element} ) => {
             return true;
         }
         else { 
-            console.log('hmmmmm', res)
             return false;
         }
 

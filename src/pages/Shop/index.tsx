@@ -1,16 +1,17 @@
 import './style.scss';
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
-import { api } from '../../services/api/api';
+import { ProductsApi } from '../../services/api/api';
 import { ProductBox } from '../../components/ProductBox';
 import { Pagination } from '../../components/Pagination';
 
 interface allProduct {
-    id: number;
+    _id: string;
     image: string;
     name: string;
     price:number;
     deletedPrice: number;
+    amount: number;
 }
 
 interface ShopProps {
@@ -39,13 +40,13 @@ export function Shop({ onHandleOpenCart }: ShopProps) {
     }
 
     useEffect(() => {
-        api.get('allProducts')
-        .then(response => setAllProducts(response.data.allProducts));
+        ProductsApi.get()
+        .then(response => setAllProducts(response.data));
     }, [])
 
     useEffect(() => {
-        api.get('allProducts')
-        .then(response => setFilterProducts(response.data.allProducts));
+        ProductsApi.get()
+        .then(response => setFilterProducts(response.data));
         // eslint-disable-next-line
     }, []);
 
@@ -82,13 +83,14 @@ export function Shop({ onHandleOpenCart }: ShopProps) {
                     <div className='product-list mt-5 d-flex justify-content-evenly align-items-center container'>
                     {currentItens.map(product => {
                         return (
-                            <div key={product.id}>
+                            <div key={product._id}>
                                 <ProductBox
                                     onProductOpenCart = {onHandleOpenCart}
                                     productImage={product.image}
                                     productName={product.name}
                                     productPrice={product.price}
                                     productDeletedPrice={product.deletedPrice}
+                                    onAmount={product.amount}
                                     onProducts={product}
                                 />
                             </div>

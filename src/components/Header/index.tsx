@@ -13,9 +13,7 @@ interface HeaderProps {
 }
 
 
-
 export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: HeaderProps) {
-    const [openCart, setOpenCart] = useState(false);
     const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
 
     const {
@@ -27,23 +25,12 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
 
     const auth = useContext(AuthContext);
 
-    function handleOpenCart() {
-        setOpenCart(true);
-    }
-    function handleCloseCart() {
-        setOpenCart(false);
-    }
-
     function handleOpenResponsiveMenu() {
         setOpenResponsiveMenu(true);
     }
     function handleCloseResponsiveMenu() {
         setOpenResponsiveMenu(false);
     }
-
-    useEffect(() => {
-        
-    },[auth.user])
 
     return (
         <div className='header'>
@@ -67,32 +54,33 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                         <div className="items-in-cart">
                             <p>{items.length}</p>
                         </div>
-
-                        <div className="icon ps-2">
-                            <BsHeart style={{fontSize:'20px'}} />
-                        </div>
-                        {
-                            auth.user ? (
-                                <>
-                                    <div className="icon ps-2">
-                                        <h6  style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
-                                    </div>
-                                    <div className="icon ps-2">
-                                        <a style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</a>
-                                    </div>
-                                </>
-                            )
-                            :
-                            (
-                                <div className="icon ps-2">
-                                    <a href="/login" ><BsPerson style={{fontSize:'20px'}} className='icon' /></a>
-                                </div>
-                            )
-                        }
-                        <div className="icon icon-responsive">
-                            <HiBars3 onClick={handleOpenResponsiveMenu} />
-                        </div>
                     </div>
+
+                    <div className="icon ps-2">
+                        <BsHeart style={{fontSize:'20px'}} />
+                    </div>
+                    {
+                        auth.user ? (
+                            <>
+                                <div className="icon ps-2">
+                                    <h6  style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                </div>
+                                <div className="icon ps-2">
+                                    <a style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</a>
+                                </div>
+                            </>
+                        )
+                        :
+                        (
+                            <div className="icon ps-2">
+                                <a href="/login" ><BsPerson style={{fontSize:'20px'}} className='icon' /></a>
+                            </div>
+                        )
+                    }
+                    <div className="icon icon-responsive">
+                        <HiBars3 onClick={handleOpenResponsiveMenu} />
+                    </div>
+
                 </div>
             </header>
 
@@ -126,9 +114,9 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                         <h5>Shopping Cart</h5>
                         <IoMdClose onClick={onHandleCloseCart} className='close-cart' />
                     </div>
-                    {items.map((item: any) => {
+                    {items.map((item) => {
                         return (
-                            <div key={item.id}>
+                            <div key={item._id}>
                                 <div className="cart-product d-flex align-items-center gap-2">
                                     <div className="cart-img">
                                         <img src={item.image} alt="food-name" />
@@ -143,7 +131,7 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                                                 }).format(item.price)}
                                             </p>
                                             <div  className='remove-product d-flex justify-content-center align-items-center'>
-                                                <IoMdClose onClick={() => removeItem(item.id)}/>
+                                                <IoMdClose onClick={() => removeItem(item._id)}/>
                                             </div>
                                         </div>
                                     </div>
@@ -165,8 +153,6 @@ export function Header({ onHandleOpenCart, onHandleCloseCart, onOpenCart }: Head
                         <a href="/cart" className='view-button'>View Cart</a>
                         {/* <Button className="w-100 mt-3">Checkout Now</Button> */}
                         <p className='mt-2' onClick={emptyCart}>Limpar carrinho</p>
-
-                        <a href="/cart" className='view-button'>View Cart</a>
                         <Button className="w-100 mt-3">Checkout Now</Button>
                     </div>
                 </div>

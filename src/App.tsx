@@ -62,37 +62,32 @@ function App() {
     //   </div>
     //   }
     // </CartProvider>
-<CartProvider>
-    { loading ? <div className='loading-box'><img className='loading' src={loadingImage} alt="loading" /></div>
-    : (
-      <div>
-    <AuthProvider>
-              
-              <BrowserRouter>
-                <Header 
-                  onOpenCart = {openCart} 
-                  onHandleOpenCart = {handleOpenCart} 
-                  onHandleCloseCart = {handleCloseCart}
-                />
-                <Routes>
-                  <Route element={<Home onHandleOpenCart = {handleOpenCart} />} path="/"/>
-                  <Route element={<DontLogin><Login /></DontLogin>} path="/login" />
-                  <Route element={<SignUp />} path="/signup"/>
-                  <Route element={<About />} path="/sobre" />
-                  <Route element={<Contact />} path="/contato" />
-                  <Route element={ <RequireAuth><Cart/></RequireAuth> } path="/cart" />
-                  
-                  {/* <Route element={<Shop onHandleOpenCart = {handleOpenCart} />} path="/loja" /> */}
-                </Routes>
-                <Footer></Footer>
-              </BrowserRouter>
-              
-            </AuthProvider>
-      </div>
-    )
-}
+  <CartProvider>
+      { loading ? <div className='loading-box'><img className='loading' src={loadingImage} alt="loading" /></div>
+        :(
+        <AuthProvider>
+          <BrowserRouter>
+            <Header 
+              onOpenCart = {openCart} 
+              onHandleOpenCart = {handleOpenCart} 
+              onHandleCloseCart = {handleCloseCart}
+            />
+            <Routes>
+              <Route element={<Home onHandleOpenCart = {handleOpenCart} />} path="/"/>
+              <Route element={<DontLogin><Login /></DontLogin>} path="/login" />
+              <Route element={<SignUp />} path="/signup"/>
+              <Route element={<About />} path="/sobre" />
+              <Route element={<Contact />} path="/contato" />
+              <Route element={ <RequireAuth><Cart/></RequireAuth> } path="/cart" />
+              <Route element={<Shop onHandleOpenCart = {handleOpenCart} />} path="/loja" />
+            </Routes>
+            <Footer></Footer>
+          </BrowserRouter>
+          
+        </AuthProvider>
+      )
+    }
+  </CartProvider>
+)}
 
-</CartProvider>
-  )
-}
 export default App
