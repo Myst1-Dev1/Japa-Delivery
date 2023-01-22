@@ -1,4 +1,5 @@
 import { IoMdClose } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 import { IShoppingCartItem } from '../Products';
 import './style.scss';
 
@@ -22,11 +23,15 @@ export function CartProduct({
     return (
         <div className="cart-container">
             {onOpenCart && (
-                <div className="shopping-cart">
-                    <div className='cart-box d-flex justify-content-between align-items-center'>
-                        <h5>Shopping Cart</h5>
-                        <IoMdClose className='close-cart' onClick={onCloseCart} />
-                    </div>
+                <div className="shopping-cart d-flex justify-content-between flex-column">
+                    
+                    <div>
+
+                        <div className='cart-box d-flex justify-content-between align-items-center'>
+                            <h5>Shopping Cart</h5>
+                            <IoMdClose className='close-cart' onClick={onCloseCart} />
+                        </div>
+
                         {onShoppingCart.map(item => {
                             return (
                                 <div>
@@ -53,22 +58,24 @@ export function CartProduct({
                             )
                         })}
                         
+                        <div className="totalPrice mt-1 d-flex align-items-center justify-content-between">
+                            <h5>Subtotal</h5>
+                            <h5>
+                                {Intl.NumberFormat('pt-br', {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(onTotalCart)}
+                                
+                            </h5>
+                        </div>
 
-                    <div className="totalPrice mt-1 d-flex align-items-center justify-content-between">
-                        <h5>Subtotal</h5>
-                        <h5>
-                            {Intl.NumberFormat('pt-br', {
-                                style: 'currency',
-                                currency: 'BRL'
-                            }).format(onTotalCart)}
-                            
-                        </h5>
                     </div>
+
                     <div className='button-box'>
-                        <button className='view-button'>View Cart</button>
+                        <Link to="/cart" className='view-button text-center'> Ver Carrinho </Link>
                         <p onClick={onHandleCleanCart} className='mt-2'>Limpar carrinho</p>
                     </div>
-            </div>
+                </div>
             )}
         </div>
     )
