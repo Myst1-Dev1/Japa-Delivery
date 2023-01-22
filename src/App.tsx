@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import { CartProvider } from 'react-use-cart';
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { Home } from "./pages/Home";
@@ -11,6 +10,8 @@ import { Shop } from './pages/Shop';
 import { Footer } from './components/Footer';
 import { Favorites } from './pages/Favorites';
 import { AuthProvider } from './contexts/AuthProvider';
+import { Cart } from './pages/Cart';
+import { RequireAuth } from './contexts/RequireAuth';
 const loadingImage = require('./assets/images/loading.gif');
 
 
@@ -60,6 +61,7 @@ function App() {
                         <Route element={<Favorites />} path="/favorites" />
                         <Route element={<Contact />} path="/contato" />
                         <Route element={<Shop onHandleOpenCart = {handleOpenCart} />} path="/loja" />
+                        <Route element={<RequireAuth><Cart/></RequireAuth>} path="/cart" />
                       </Routes>
                       <Footer />
                   </AuthProvider>

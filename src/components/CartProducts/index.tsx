@@ -1,4 +1,5 @@
 import { IoMdClose } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 import { IShoppingCartItem } from '../Products';
 import './style.scss';
 
@@ -23,14 +24,16 @@ export function CartProduct({
         
         <div className="cart-container">
             {onOpenCart && (
-                <div className="shopping-cart">
-                    <div className='cart-box d-flex justify-content-between align-items-center'>
-                        <h5>Shopping Cart</h5>
-                        <IoMdClose className='close-cart' onClick={onCloseCart} />
-                    </div>
-                        {onShoppingCart.length === 0 ? <p className='mt-2'>Não há produtos em seu carrinho 😭</p> :        
-                        <div>
-                            {onShoppingCart.map(item => {
+                <div className="shopping-cart d-flex justify-content-between flex-column">
+                    
+                    <div>
+
+                        <div className='cart-box d-flex justify-content-between align-items-center'>
+                            <h5>Shopping Cart</h5>
+                            <IoMdClose className='close-cart' onClick={onCloseCart} />
+                        </div>
+
+                        {onShoppingCart.map(item => {
                             return (
                                 <div>
                                     <div key={item.product._id} className="cart-product d-flex align-items-center gap-2">
@@ -55,6 +58,7 @@ export function CartProduct({
                                 </div>
                             )
                         })}
+                        
                         <div className="totalPrice mt-3 d-flex align-items-center justify-content-between">
                             <h5>Subtotal</h5>
                             <h5>
@@ -65,13 +69,14 @@ export function CartProduct({
                                 
                             </h5>
                         </div>
-                        </div>
-                        }
+
+                    </div>
+
                     <div className='button-box'>
-                        <button className='view-button'>View Cart</button>
+                        <Link to="/cart" className='view-button text-center'> Ver Carrinho </Link>
                         <p onClick={onHandleCleanCart} className='mt-2'>Limpar carrinho</p>
                     </div>
-            </div>
+                </div>
             )}
         </div>
     )
