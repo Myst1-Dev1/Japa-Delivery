@@ -21,6 +21,7 @@ export function CartProduct({
     onHandleCleanCart
     }: CartProductProps) {
     return (
+        
         <div className="cart-container">
             {onOpenCart && (
                 <div className="shopping-cart d-flex justify-content-between flex-column">
@@ -58,7 +59,7 @@ export function CartProduct({
                             )
                         })}
                         
-                        <div className="totalPrice mt-1 d-flex align-items-center justify-content-between">
+                        <div className="totalPrice mt-3 d-flex align-items-center justify-content-between">
                             <h5>Subtotal</h5>
                             <h5>
                                 {Intl.NumberFormat('pt-br', {
