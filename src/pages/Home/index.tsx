@@ -3,6 +3,7 @@ import './style.scss';
 import { Products } from '../../components/Products';
 import { Button } from '../../components/Button';
 import { DealsHotProduct } from '../../components/DealsHotProduct';
+import { useEffect } from 'react';
 
 
 const bannerImg = require('../../assets/images/banner-image.png');
@@ -19,7 +20,6 @@ interface HomeProps {
 
 export function Home({ onHandleOpenCart, onOpenCart, onHandleCloseCart }: HomeProps) {
    
-
     return (
         <div className='home-page'>
             {/* Banner */}
