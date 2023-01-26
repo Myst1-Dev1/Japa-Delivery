@@ -1,6 +1,8 @@
 import './style.scss';
 import {BsHeart, BsEye} from 'react-icons/bs';
 import { Product } from '../../Types/Product';
+import { useCart } from '../../contexts/CartContext/useCart';
+import { useProducts } from '../../contexts/ProductsContext/useProducts';
 
 const fiveStar = require('../../assets/images/fivestar.png');
 
@@ -10,8 +12,6 @@ interface ProductBoxProps {
     productPrice: number;
     productDeletedPrice: number;
     onProducts:Product;
-    onProductOpenCart:() => void;
-    onAddToCart:(id:string) => void;
 }
 
 export function ProductBox({ 
@@ -20,15 +20,15 @@ export function ProductBox({
     productPrice, 
     productDeletedPrice, 
     onProducts, 
-    onProductOpenCart,
-    onAddToCart
 
 }: ProductBoxProps) {
 
+    const { handleAddToCart, handleOpenCart } = useCart();
+
 
     function handleAddProduct(){
-        onAddToCart(onProducts._id)
-        onProductOpenCart();
+        handleAddToCart(onProducts._id)
+        handleOpenCart();
     }
 
     return (

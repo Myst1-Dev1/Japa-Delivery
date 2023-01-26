@@ -4,8 +4,6 @@
         background-color: var(--blackAlpha);
         color: var(--text-white);
         width: 100%;
-        transition: 0.3s;
-        z-index: 1000;
 
         h1 {
             font-size:2rem;
@@ -61,6 +59,35 @@
                     &:hover{
                         color: var(--red-500);
                     }
+                }
+            }
+
+            .user-image {
+                img {
+                    width: 2.5rem;
+                    cursor: pointer;
+                }
+            }
+
+            .user-profile {
+                background-color: #fff;
+                color: #000;
+                box-shadow: 1px 1px 5px #000;
+                border-radius: 0.325rem;
+                height: 8rem;
+                width: 9.4rem;
+                padding: 0.6rem;
+                position: absolute;
+                top: 3rem;
+                left: 5rem;
+                animation: fadeIn 1s ease;
+
+                h6 {
+                    font-size: 0.9rem;
+                }
+
+                .icon {
+                    font-size: 1.2rem;
                 }
             }
 
@@ -215,20 +242,29 @@
         header {
             padding: 1rem;
             display: flex;
+            justify-content: flex-start!important;
+            align-items: flex-start!important;
             flex-direction: column;
+            gap: 0.4rem!important;
+            
+            h1 {
+                text-align: start;
+            }
 
             nav {
                 display: none;
             }
 
             .header-icons {
-                width: 10rem;
                 
                 // .icon {
                     
                 // }
                 .icon-responsive {
                     display: block;
+                    position: absolute;
+                    top: -3rem;
+                    right: -17rem;
                 }
 
                 .items-in-cart {

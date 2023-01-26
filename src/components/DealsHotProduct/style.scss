@@ -134,8 +134,15 @@
     }
 }
 
-// @media(max-width:750px) {
-//     .deals-hot-container {
-//         height: 38rem!important;
-//     }
-// }
+@media(max-width:750px) {
+    .deals-hot-container {
+        width: 100%;
+        flex:0!important;
+
+        .add-to-cart {
+            h6 {
+                font-size: 0.5rem;
+            }
+        }
+    }
+}

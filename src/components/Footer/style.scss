@@ -57,11 +57,11 @@ footer {
             }
         }
 
-        .info,
-        .account,
-        .help {
-            max-width: 15rem;
-        }
+        // .info,
+        // .account,
+        // .help {
+        //     max-width: 15rem;
+        // }
     }
 
     .copyright {
@@ -76,6 +76,7 @@ footer {
 }
 
 @media(max-width:750px) {
+    
     .adress-socials {
         margin-bottom: 1.4rem;
     }
