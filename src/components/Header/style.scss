@@ -1,7 +1,7 @@
 .header {
     header {
         padding:1rem 2rem;
-        background-color: var(--blackAlpha);
+        background-color: var(--blackAlpha-800);
         color: var(--text-white);
         width: 100%;
 
@@ -35,9 +35,10 @@
             gap: 2rem;
     
             .icon {
-                font-size: 1.7rem;
+                font-size: 1.5rem;
                 cursor: pointer;
                 transition: color 0.3s;
+                color: var(--text-white);
     
                 &:hover {
                     color: var(--red-500);
@@ -47,6 +48,16 @@
                     position: absolute;
                     top: 0.1rem;
                     right: 4.6rem;
+                    p {
+                        font-size: 0.7rem;
+                    }
+                }
+
+                .favorites-amount {
+                    position: absolute;
+                    top: 0.1rem;
+                    right: 1rem;
+
                     p {
                         font-size: 0.7rem;
                     }
@@ -70,20 +81,28 @@
             }
 
             .user-profile {
-                background-color: #fff;
-                color: #000;
+                background-color: var(--blackAlpha-900);
+                color: var(--text-white);
                 box-shadow: 1px 1px 5px #000;
                 border-radius: 0.325rem;
                 height: 8rem;
-                width: 9.4rem;
-                padding: 0.6rem;
+                transform: scaleX(1);
+                width: 12rem;
+                padding: 0.6rem 0.8rem;
                 position: absolute;
                 top: 3rem;
-                left: 5rem;
-                animation: fadeIn 1s ease;
+                left: 4rem;
+                animation: fadeProfile 0.5s ease;
 
-                h6 {
-                    font-size: 0.9rem;
+                .profile-box {
+
+                    img {
+                        width: 2rem;
+                    }
+
+                    h6 {
+                        font-size: 1rem;
+                    }
                 }
 
                 .icon {
@@ -94,6 +113,12 @@
             .icon-responsive {
                 display: none;
             }
+        }
+    }
+
+    @keyframes fadeProfile {
+        0%{
+            transform: scaleX(0);
         }
     }
 

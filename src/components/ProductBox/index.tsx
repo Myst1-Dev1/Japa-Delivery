@@ -1,8 +1,9 @@
 import './style.scss';
-import {BsHeart, BsEye} from 'react-icons/bs';
+import { BsEye } from 'react-icons/bs';
+import { FaHeart } from 'react-icons/fa';
 import { Product } from '../../Types/Product';
 import { useCart } from '../../contexts/CartContext/useCart';
-import { useProducts } from '../../contexts/ProductsContext/useProducts';
+import { useFavorites } from '../../contexts/FavoriteContext/useFavorites';
 
 const fiveStar = require('../../assets/images/fivestar.png');
 
@@ -25,6 +26,9 @@ export function ProductBox({
 
     const { handleAddToCart, handleOpenCart } = useCart();
 
+    const { favorites, addProductToFavorites } = useFavorites()
+
+    const isFavorite = favorites.find((product) => product.favorite._id === onProducts._id);
 
     function handleAddProduct(){
         handleAddToCart(onProducts._id)
@@ -50,9 +54,9 @@ export function ProductBox({
                     }).format(productDeletedPrice)}
                 </del>
             </p>
-            <button onClick={handleAddProduct}>Add To Cart</button>
+            <button onClick={handleAddProduct}>Adicionar ao carrinho</button>
             <div className='product-icon d-flex flex-column gap-2'>
-                <BsHeart className='heart-icon' />
+                <FaHeart onClick={() => addProductToFavorites(onProducts._id)} className={isFavorite ? "text-danger" : "text-dark"} />
             </div>
             <div className="product-open-modal">
                 <BsEye />

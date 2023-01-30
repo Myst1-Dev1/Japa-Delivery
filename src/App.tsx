@@ -15,6 +15,7 @@ import { Cart } from './pages/Cart';
 import { RequireAuth } from './contexts/AuthContext/RequireAuth';
 import { CartProvider } from './contexts/CartContext/useCart';
 import { PaymentPage } from './pages/PaymentPage';
+import { FavoritesProvider } from './contexts/FavoriteContext/useFavorites';
 const loadingImage = require('./assets/images/loading.gif');
 
 function App() {
@@ -37,20 +38,22 @@ function App() {
                 <AuthProvider>
                     <ProductsProvider>
                       <CartProvider>
-                        <Header />
-                          <Routes>
-                            <Route element={
-                              <Home/> } path="/"/>
-                            <Route element={<Login />} path="/login" />
-                            <Route element={<SignUp />} path="/signup"/>
-                            <Route element={<About />} path="/sobre" />
-                            <Route element={<Favorites />} path="/favorites" />
-                            <Route element={<Contact />} path="/contato" />
-                            <Route element={<Shop />} path="/loja" />
-                            <Route element={<RequireAuth><PaymentPage /></RequireAuth>} path="/cart/paymentpage" />
-                            <Route element={<RequireAuth><Cart/></RequireAuth>} path="/cart" />
-                          </Routes>
-                          <Footer />
+                        <FavoritesProvider>
+                          <Header />
+                            <Routes>
+                              <Route element={
+                                <Home/> } path="/"/>
+                              <Route element={<Login />} path="/login" />
+                              <Route element={<SignUp />} path="/signup"/>
+                              <Route element={<About />} path="/sobre" />     
+                              <Route element={<Contact />} path="/contato" />
+                              <Route element={<Shop />} path="/loja" />
+                              <Route element={<RequireAuth><Favorites /></RequireAuth>} path="/favorites" />
+                              <Route element={<RequireAuth><PaymentPage /></RequireAuth>} path="/cart/paymentpage" />
+                              <Route element={<RequireAuth><Cart/></RequireAuth>} path="/cart" />
+                            </Routes>
+                            <Footer />
+                          </FavoritesProvider>
                         </CartProvider>
                       </ProductsProvider>
                   </AuthProvider>

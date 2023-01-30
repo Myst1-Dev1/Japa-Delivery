@@ -8,14 +8,17 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import { useCart } from '../../contexts/CartContext/useCart';
 import { CartProduct } from '../CartProducts';
+import { useFavorites } from '../../contexts/FavoriteContext/useFavorites';
 
 const userImage = require('../../assets/images/user-image.png');
+//const deliveryLogo = require('../../assets/images/mek-logo.png');
 
 export function Header() {
     const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
     const [openProfileUser, setOpenProfileUser] = useState(false);
 
     const { handleOpenCart, shoppingCart } = useCart();
+    const { favorites } = useFavorites();
 
       const auth = useContext(AuthContext);
 
@@ -57,8 +60,11 @@ export function Header() {
                             <p>{shoppingCart.length}</p>
                         </div>
                     </div>
-                    <div>
-                       <Link className="icon text-light" to="/favorites"> <BsHeart /> </Link>
+                    <div className='icon'>
+                       <Link className='icon' to="/favorites"> <BsHeart /> </Link>
+                       <div className="favorites-amount">
+                            <p>{favorites.length}</p>
+                       </div>
                     </div>
                     {
                         auth.user ? (
@@ -69,9 +75,11 @@ export function Header() {
 
                                 {openProfileUser && (
                                    <div className='user-profile d-flex flex-column justify-content-between'>
-                                        <div>
-                                        <h6>{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                        <div className='profile-box d-flex align-items-center'>
+                                            <img src={userImage} alt="user" />
+                                            <h6 className='m-auto'>{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
                                         </div>
+                                       
                                         <div onClick={auth.signOut} className="icon d-flex align-items-center gap-2">
                                             <GoSignOut className='icon'  />
                                             <h6>Logout</h6>
