@@ -2,17 +2,23 @@ import { useState, useContext, useEffect} from 'react';
 import { BsHeart, BsPerson, BsCart } from 'react-icons/bs';
 import { HiBars3 } from 'react-icons/hi2';
 import { IoMdClose } from 'react-icons/io'
+import { GoSignOut } from 'react-icons/go';
 import './style.scss';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext/AuthContext';
+import { useCart } from '../../contexts/CartContext/useCart';
+import { CartProduct } from '../CartProducts';
+import { useFavorites } from '../../contexts/FavoriteContext/useFavorites';
 
+const userImage = require('../../assets/images/user-image.png');
+//const deliveryLogo = require('../../assets/images/mek-logo.png');
 
-interface HeaderProps {
-    onHandleOpenCart: () => void;
-}
-
-export function Header({ onHandleOpenCart }: HeaderProps) {
+export function Header() {
     const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
+    const [openProfileUser, setOpenProfileUser] = useState(false);
+
+    const { handleOpenCart, shoppingCart } = useCart();
+    const { favorites } = useFavorites();
 
       const auth = useContext(AuthContext);
 
@@ -23,6 +29,10 @@ export function Header({ onHandleOpenCart }: HeaderProps) {
         setOpenResponsiveMenu(false);
     }
 
+    function handleOpenProfileUser() {
+        setOpenProfileUser(!openProfileUser);
+    }
+
     useEffect(() => {
 
     },[auth.user]);
@@ -31,7 +41,7 @@ export function Header({ onHandleOpenCart }: HeaderProps) {
     return (
         <div className='header'>
             <header className='d-flex justify-content-evenly align-items-center'>
-                <h1>M&K Delivery</h1>
+                <h1 className='mb-0'>M&K Delivery</h1>
                 <div className="navBar d-flex justify-content-between align-items-center">
                     <nav>
                         <ul className='d-flex align-items-center m-auto'>
@@ -45,23 +55,37 @@ export function Header({ onHandleOpenCart }: HeaderProps) {
 
                 <div className="header-icons d-flex align-items-center">
                     <div className="icon">
-                        <BsCart onClick={onHandleOpenCart} />
-                        {/* <div className="items-in-cart">
-                            <p>0</p>
-                        </div> */}
+                        <BsCart onClick={handleOpenCart} />
+                        <div className="items-in-cart">
+                            <p>{shoppingCart.length}</p>
+                        </div>
                     </div>
-                    <div className="icon">
-                       <Link to="/favorites"> <BsHeart /> </Link>
+                    <div className='icon'>
+                       <Link className='icon' to="/favorites"> <BsHeart /> </Link>
+                       <div className="favorites-amount">
+                            <p>{favorites.length}</p>
+                       </div>
                     </div>
                     {
                         auth.user ? (
                             <>
-                                <div className="icon ps-2">
-                                    <h6 style={{fontSize:'13px', textAlign: 'center'}} >{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                <div className="user-image">
+                                    <img onClick={handleOpenProfileUser} src={userImage} alt="user" />
                                 </div>
-                                <div className="icon ps-2">
-                                    <p style={{fontSize:'13px'}}  onClick={auth.signOut}>Sair</p>
-                                </div>
+
+                                {openProfileUser && (
+                                   <div className='user-profile d-flex flex-column justify-content-between'>
+                                        <div className='profile-box d-flex align-items-center'>
+                                            <img src={userImage} alt="user" />
+                                            <h6 className='m-auto'>{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                        </div>
+                                       
+                                        <div onClick={auth.signOut} className="icon d-flex align-items-center gap-2">
+                                            <GoSignOut className='icon'  />
+                                            <h6>Logout</h6>
+                                        </div>
+                                   </div>
+                                )}
                             </>
                             )
                             :
@@ -100,53 +124,7 @@ export function Header({ onHandleOpenCart }: HeaderProps) {
                     </div>
             }
 
-            {/* Shopping cart */}
-            {/* {onOpenCart && (
-                <div className="shopping-cart">
-                    <div className='cart-box d-flex justify-content-between align-items-center'>
-                        <h5>Shopping Cart</h5>
-                        <IoMdClose onClick={onHandleCloseCart} className='close-cart' />
-                    </div>
-                    {items.map((item) => {
-                        return (
-                            <div key={item.product._id}>
-                                <div className="cart-product d-flex align-items-center gap-2">
-                                    <div className="cart-img">
-                                        <img src={item.product.image} alt="food-name" />
-                                    </div>
-                                    <div>
-                                        <h6>{item.product.name}</h6>
-                                        <div className='cart-remove d-flex justify-content-between'>
-                                            <p>
-                                                {Intl.NumberFormat('pt-br', {
-                                                    style: 'currency',
-                                                    currency: 'BRL'
-                                                }).format(item.product.price)}
-                                            </p>
-                                            <div  className='remove-product d-flex justify-content-center align-items-center'>
-                                                <IoMdClose onClick={() => removeItem(item.product._id)}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                    <div className="totalPrice mt-1 d-flex align-items-center justify-content-between">
-                        <h5>Subtotal</h5>
-                        <h5>
-                            {Intl.NumberFormat('pt-br', {
-                                style: 'currency',
-                                currency: 'BRL'
-                            }).format(cartTotal)}
-                        </h5>
-                    </div>
-                    <div className='button-box'>
-                        <button className='view-button'>View Cart</button>
-                        <p className='mt-2' onClick={emptyCart}>Limpar carrinho</p>
-                    </div>
-                </div>
-            )} */}
+            <CartProduct />
         </div>
     )
 }

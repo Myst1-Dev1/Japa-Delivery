@@ -15,33 +15,35 @@ export function Footer() {
     return (
         <footer>
             <div className='footer-container d-flex justify-content-evenly align-items-center m-auto'>
-                <div className='adress mt-3'>
+                <div className='adress'>
                     <h5>Nosso endereço</h5>
-                    <div className='adress-box d-flex gap-2'>
-                        <FaMapMarkerAlt className='icon' />
-                        <h6>Rua Loren Silva</h6>
-                    </div>
-                    <div className='adress-box d-flex gap-2'>
-                        <FaPhone className='icon' />
-                        <h6>+45 7 4452-8901</h6>
-                    </div>
-                    <div className='adress-box d-flex gap-2'>
-                        <FaEnvelope className='icon' />
-                        <h6>m&kdelivery@hotmail.com</h6>
-                    </div>
-                    <div className="adress-socials d-flex gap-2">
-                        <div className="d-flex justify-content-center align-items-center social" 
-                            style={{background:'#084f99'}}
-                        >
-                            <FaFacebookF />
+                    <div className='d-flex flex-column gap-1'>
+                        <div className='adress-box d-flex gap-2'>
+                            <FaMapMarkerAlt className='icon' />
+                            <h6>Rua Loren Silva</h6>
                         </div>
-                        <div className="d-flex justify-content-center align-items-center social" 
-                            style={{background:'#1da1f2'}}
-                        >
-                            <FaTwitter />
+                        <div className='adress-box d-flex gap-2'>
+                            <FaPhone className='icon' />
+                            <h6>+45 7 4452-8901</h6>
                         </div>
-                        <div className="d-flex justify-content-center align-items-center social instagram">
-                            <FaInstagram />
+                        <div className='adress-box d-flex gap-2'>
+                            <FaEnvelope className='icon' />
+                            <h6>m&kdelivery@hotmail.com</h6>
+                        </div>
+                        <div className="adress-socials d-flex gap-2">
+                            <div className="d-flex justify-content-center align-items-center social" 
+                                style={{background:'#084f99'}}
+                            >
+                                <FaFacebookF />
+                            </div>
+                            <div className="d-flex justify-content-center align-items-center social" 
+                                style={{background:'#1da1f2'}}
+                            >
+                                <FaTwitter />
+                            </div>
+                            <div className="d-flex justify-content-center align-items-center social instagram">
+                                <FaInstagram />
+                            </div>
                         </div>
                     </div>
                 </div>

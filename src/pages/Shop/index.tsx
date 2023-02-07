@@ -1,60 +1,13 @@
 import './style.scss';
 import { BsSearch } from 'react-icons/bs';
-import { useState, useEffect } from 'react';
-import { ProductsApi } from '../../services/api/api';
 import { ProductBox } from '../../components/ProductBox';
 import { Pagination } from '../../components/Pagination';
-import { Product } from '../../Types/Product';
+import { useProducts } from '../../contexts/ProductsContext/useProducts';
+import { Filter } from '../../components/Filter';
 
-interface ShopProps {
-    onHandleOpenCart:() => void
-}
 
-export function Shop({ onHandleOpenCart }: ShopProps) {
-    const [allProducts, setAllProducts] = useState<Product[]>([])
-    const [itensPerPage, setItensPerPage] = useState(6);
-    const [currentPage, setCurrentPage] = useState(0);
-    const [search, setSearch] = useState('');
-    const [filterProducts, setFilterProducts] = useState([]);
-
-    const pages = Math.ceil(allProducts.length / itensPerPage);
-    const startIndex = currentPage * itensPerPage;
-    const endIndex = startIndex + itensPerPage;
-    const currentItens = allProducts.slice(startIndex, endIndex);
-
-    const searchLowerCase = search.toLowerCase();
-    function searchProduct() {
-        if(search !== '') {
-            setAllProducts(filterProducts.filter((e:any) => e.name.toLowerCase().includes(searchLowerCase)))
-        }else {
-            setAllProducts(filterProducts);
-        }
-    }
-
-    async function getProducts() {
-        const res = await ProductsApi.get();
-        setAllProducts(res.data);
-    }
-
-    useEffect(() => {
-        getProducts();
-    }, [])
-
-    // useEffect(() => {
-    //     ProductsApi.get()
-    //     .then(response => setAllProducts(response.data.allProducts));
-    // }, [])
-
-    useEffect(() => {
-        ProductsApi.get()
-        .then(response => setFilterProducts(response.data.allProducts));
-        // eslint-disable-next-line
-    }, []);
-
-    useEffect(() => {
-        searchProduct();
-        // eslint-disable-next-line
-    }, [search])
+export function Shop() {
+    const {products, currentItens} = useProducts();
 
     return (
         <div className='shop-page'>
@@ -67,26 +20,20 @@ export function Shop({ onHandleOpenCart }: ShopProps) {
             <div className='shop-container container mt-4 mb-5'>
                 <h2>Confira nossos produtos</h2>
                 <div className='input-box mt-5 d-flex align-items-center'>
-                    <input 
-                        type="text" 
-                        placeholder='Pesquisar'
-                        value={search}
-                        onChange={(e: any) => setSearch(e.target.value)}
-                    />
+                    <Filter />
                     <div className="input-icon">
                         <BsSearch />
                     </div>
                 </div>
 
-                {allProducts.length === 0 ? 
+                {products.length === 0 ? 
                     <p className='mt-5 text-center'>Não há produtos que correspondam a sua pesquisa 😭</p> 
                     : 
                     <div className='product-list mt-5 d-flex justify-content-evenly align-items-center container'>
-                    {/* {currentItens.map(product => {
+                    {currentItens.map(product => {
                         return (
                             <div key={product._id}>
                                 <ProductBox
-                                    onProductOpenCart = {onHandleOpenCart}
                                     productImage={product.image}
                                     productName={product.name}
                                     productPrice={product.price}
@@ -95,17 +42,11 @@ export function Shop({ onHandleOpenCart }: ShopProps) {
                                 />
                             </div>
                         )
-                    })} */}
+                    })}
                 </div>
                 }
 
-                <Pagination 
-                    onPages = {pages}
-                    onSetCurrentPage = {setCurrentPage}
-                    onCurrentPage = {currentPage}
-                    onSetItensPerPage = {setItensPerPage}
-                    onItensPerPage = {itensPerPage}
-                />   
+                <Pagination />   
 
             </div>
         </div>

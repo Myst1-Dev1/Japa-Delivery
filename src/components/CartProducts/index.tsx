@@ -1,39 +1,36 @@
 import { IoMdClose } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import { IShoppingCartItem } from '../Products';
+import { useCart } from '../../contexts/CartContext/useCart';
+
 import './style.scss';
 
-interface CartProductProps {
-    onShoppingCart:IShoppingCartItem[];
-    onOpenCart:boolean;
-    onCloseCart:() => void;
-    onRemoveItemFromCart:(id:string) => void;
-    onTotalCart:number;
-    onHandleCleanCart:() => void
-}
+export function CartProduct() {
 
-export function CartProduct({
-    onShoppingCart, 
-    onOpenCart, 
-    onCloseCart, 
-    onRemoveItemFromCart, 
-    onTotalCart,
-    onHandleCleanCart
-    }: CartProductProps) {
+    const {
+        shoppingCart, 
+        handleRemoveItemToCart, 
+        totalCart, 
+        handleCleanCart,
+        openCart,
+        handleCloseCart
+    } = useCart();
+        
     return (
         
         <div className="cart-container">
-            {onOpenCart && (
+            {openCart && (
                 <div className="shopping-cart d-flex justify-content-between flex-column">
                     
                     <div>
 
                         <div className='cart-box d-flex justify-content-between align-items-center'>
                             <h5>Shopping Cart</h5>
-                            <IoMdClose className='close-cart' onClick={onCloseCart} />
+                            <IoMdClose className='close-cart' onClick={handleCloseCart} />
                         </div>
 
-                        {onShoppingCart.map(item => {
+                        {shoppingCart.length === 0 ? <p className='mt-3 text-center'>Não há produtos em seu carrinho 😭</p> :
+                            <div>
+                                {shoppingCart.map(item => {
                             return (
                                 <div>
                                     <div key={item.product._id} className="cart-product d-flex align-items-center gap-2">
@@ -50,7 +47,7 @@ export function CartProduct({
                                                     }).format(item.quantity * item.product.price)} 
                                                 </p>
                                                 <div className='remove-product d-flex justify-content-center align-items-center'>
-                                                    <IoMdClose onClick={() => onRemoveItemFromCart(item.product._id)} />
+                                                    <IoMdClose onClick={() => handleRemoveItemToCart(item.product._id)} />
                                                 </div>
                                             </div>
                                         </div>
@@ -65,16 +62,18 @@ export function CartProduct({
                                 {Intl.NumberFormat('pt-br', {
                                     style: 'currency',
                                     currency: 'BRL'
-                                }).format(onTotalCart)}
+                                }).format(totalCart)}
                                 
                             </h5>
                         </div>
+                            </div>
+                        }
 
                     </div>
 
                     <div className='button-box'>
                         <Link to="/cart" className='view-button text-center'> Ver Carrinho </Link>
-                        <p onClick={onHandleCleanCart} className='mt-2'>Limpar carrinho</p>
+                        <p onClick={handleCleanCart} className='mt-2'>Limpar carrinho</p>
                     </div>
                 </div>
             )}

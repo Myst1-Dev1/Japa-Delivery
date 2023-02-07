@@ -2,7 +2,7 @@ import { useContext, useState, FormEvent} from 'react';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/FormInput';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 
 import './style.scss';
 

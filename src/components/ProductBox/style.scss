@@ -6,7 +6,6 @@
     overflow: hidden;
     transition: 0.3s;
     margin-bottom: 1.4rem;
-    animation: fadeIn 1.4s ease;
 
     &:hover {
         border: 1px solid var(--red-500);
@@ -29,8 +28,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            // transform: scale(0.9);
-            // transition: 0.3s;
         }
     }
 
@@ -84,12 +81,6 @@
         &:hover {
             color: var(--red-500);
         }
-
-        .heart-icon {
-            &:active {
-                color: var(--red-500);
-            }
-        }
     }
 
     .product-open-modal {
@@ -105,3 +96,15 @@
         }
     }
 }
+
+// @media(max-width:750px) {
+//  .product-box {
+
+//     button {
+//         position: initial!important;
+//         background-color: var(--red-500)!important;
+//         color: var(--text-white)!important;
+//         margin-bottom: 1rem;
+//     }
+//  }   
+// }

@@ -1,0 +1,44 @@
+.payment-page {
+
+   .payment-container {
+    flex-wrap: wrap;
+
+    .payment-details {
+        max-width: 40rem;
+        border: 1px solid #d7d7d7;
+        padding: 1rem;
+        
+    
+        // O código abaixo foi utilizado para remover as arrows do input number
+        input[type=number]::-webkit-inner-spin-button { 
+            -webkit-appearance: none;   
+        }
+    
+        textarea {
+            resize:none;
+            height: 7rem;
+            border: 1px solid #d7d7d7;
+            border-radius: 0.125rem;
+            outline: none;
+            padding: 0.6rem;
+        }
+       }
+    
+       .order-summary {
+        width: 25rem;
+        border: 1px solid #d7d7d7;
+        padding: 1rem;
+       }
+    
+       .payment-methods {
+        width: 25rem;
+        border: 1px solid #d7d7d7;
+        padding: 1rem;
+    
+            input[type=checkbox] {
+                width: 1rem;
+        }
+    
+       }
+   }
+}

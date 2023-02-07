@@ -1,66 +1,52 @@
 import './style.scss';
-import { FaTrashAlt } from 'react-icons/fa';
-
-const harumaki = require('../../assets/images/harumaki.png');
-const takoyaki = require('../../assets/images/takoyaki.png');
-const hotRoll = require('../../assets/images/hotRoll.png');
-
-const FavoriteFoods = [
-    {
-        id:1,
-        image:`${harumaki}`,
-        name:'Harumaki',
-        price:12,
-        deletedPrice:18.50
-    },
-    {
-        id:2,
-        image:`${takoyaki}`,
-        name:'Takoyaki',
-        price:24,
-        deletedPrice:31.50
-    },
-    {
-        id:3,
-        image:`${hotRoll}`,
-        name:'Hot Roll',
-        price:15,
-        deletedPrice:19.70
-    },
-]
+import { FaTimes } from 'react-icons/fa';
+import { useFavorites } from '../../contexts/FavoriteContext/useFavorites';
+import { useCart } from '../../contexts/CartContext/useCart';
+import { Link } from 'react-router-dom';
 
 export function Favorites() {
+   const { favorites, handleRemoveProducToFavorites, handleCleanFavorites } = useFavorites();
+   const { handleAddToCart, handleOpenCart } = useCart();
+
+   function handleAddFavoriteProductToCart(id:string){
+    handleAddToCart(id);
+    handleOpenCart()
+   }
+
     return (
         <div className="favorites container mt-5 mb-5">
-            <h2>Lista de favoritos</h2>
-
-            <div className="favorite-container container d-flex justify-content-evenly align-items-center mb-5">
-                {FavoriteFoods.map(favorite => {
-                    return (
-                        <div>
-                            <div key={favorite.name} className="favorite-box d-flex flex-column gap-2 justify-content-center align-items-center mt-5">
-                                <div className="img-container">
-                                    <img src={favorite.image} alt="favorite-product" />
+            <div className='d-flex justify-content-between align-items-center'>
+                <h2>Lista de favoritos</h2>
+                <p className='fw-bold'>{favorites.length} item</p>
+            </div>
+            <div className="container py-5">
+               {favorites.length === 0 ? <p>Você não tem nenhum produto favorito 😭</p> : 
+                <>
+                    {favorites.map(favorite => {
+                        return (
+                            <div className='favorite-container mb-4 d-flex justify-content-between align-items-center' key={favorite.favorite._id}>
+                                <div className='favorite-box d-flex gap-3'>
+                                    <img src={favorite.favorite.image} alt="favorite" />
+                                    <h5 className='fw-bold'>{favorite.favorite.name}</h5>
                                 </div>
-                                <h5>{favorite.name}</h5>
-                                <p className='d-flex gap-1'>
-                                    {Intl.NumberFormat('pt-br', {
-                                        style: 'currency',
-                                        currency: 'BRL'
-                                    }).format(favorite.price)}
-                                    <del>
-                                        {Intl.NumberFormat('pt-br', {
-                                            style: 'currency',
-                                            currency: 'BRL'
-                                        }).format(favorite.deletedPrice)}    
-                                    </del>
-                                </p>
-                                <button>Add to cart</button>
-                                <FaTrashAlt className='icon' />
+                                <div className='favorite-buy'>
+                                    <p onClick={() => handleAddFavoriteProductToCart(favorite.favorite._id)} className='fw-bold'>Adicionar ao carrinho</p>
+                                    <Link to="/loja"><p className='fw-bold'>Compre agora</p></Link>
+                                </div>
+                                <div>
+                                    <p>R$: {favorite.favorite.price}</p>
+                                    <FaTimes onClick={() => handleRemoveProducToFavorites(favorite.favorite._id)} className='icon' />
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                   })}
+                   <div className='favorite-box d-flex justify-content-between align-items-center'>
+                        <Link to="/loja"><p className='fw-bold'>Continuar comprando</p></Link>
+                        <p onClick={handleCleanFavorites} className='fw-bold'>Limpar favoritos</p>
+                     </div>
+                </>
+               }
+               
             </div>
         </div>
     )
