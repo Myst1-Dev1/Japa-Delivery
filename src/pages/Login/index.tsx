@@ -9,9 +9,9 @@ import './style.scss';
 export function Login() {
     const auth = useContext(AuthContext);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState<any>(null)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
     const [isLogged, setIsLogged] = useState<string | null>(null);
 
     const handleSubmit = async (e:FormEvent) => {
@@ -19,6 +19,14 @@ export function Login() {
 
         setIsLogged(null);
         setError(null);
+
+        if(email === ''){
+            return setError('Por favor, preencha o campo e-mail');
+        }
+
+        if (password === ''){
+            return setError('Por favor, preencha o campo senha');
+        }
 
         await auth.signIn(email, password)
         .then(() => {
@@ -34,9 +42,9 @@ export function Login() {
                 }
                 
             }, 700);
-        }).catch((error) => setError(error));
-    }
+        }).catch((error) => setError(error.response.data));
 
+    };
 
     return (
         <div className='login-page py-5'>
@@ -45,15 +53,15 @@ export function Login() {
                 <Input 
                     name='email' 
                     type="email" 
-                    placeholder='E-mail'
+                    placeholder='E-mail *'
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
                 />
                 <Input 
-                    name='senha' 
+                    name='password' 
                     type="password" 
-                    placeholder='Senha'
+                    placeholder='Senha *'
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     required
@@ -65,7 +73,7 @@ export function Login() {
                     error && 
                         <>
                             <div className='message-error'>
-                                <h6>{error.response.data}</h6>
+                                <h6>{error}</h6>
                             </div>
                         </>
                 }

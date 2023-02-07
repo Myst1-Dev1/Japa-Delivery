@@ -31,7 +31,7 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
 
         const res = await UserApi.login(email, password);
 
-        if(res.status == 200){
+        if(res.status == 201){
             const tokenGenerated = `${res.headers['auth-token']}`
             localStorage.setItem('token', tokenGenerated);
     
