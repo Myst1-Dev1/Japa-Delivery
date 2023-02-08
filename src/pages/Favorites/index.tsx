@@ -34,7 +34,12 @@ export function Favorites() {
                                     <Link to="/loja"><p className='fw-bold'>Compre agora</p></Link>
                                 </div>
                                 <div>
-                                    <p>R$: {favorite.favorite.price}</p>
+                                    <p> 
+                                        {Intl.NumberFormat('pt-br', {
+                                                style: 'currency',
+                                                currency: 'BRL'
+                                            }).format(favorite.favorite.price)}
+                                    </p>
                                     <FaTimes onClick={() => handleRemoveProducToFavorites(favorite.favorite._id)} className='icon' />
                                 </div>
                             </div>

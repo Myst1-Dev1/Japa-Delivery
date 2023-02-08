@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 export function Cart (){
 
+    const deliveryRate = 5;
     const { shoppingCart, handleRemoveItemToCart, totalCart } = useCart();
     
 
@@ -79,12 +80,12 @@ export function Cart (){
                                 </h6>
                             </div>
                             <div className='d-flex justify-content-between align-items-center'>
-                                <h6>Taxas</h6>
+                                <h6>Taxas de Entrega: <span className='delivery-rate'>{`(+5,00)`}</span></h6>
                                 <h6>
                                     {Intl.NumberFormat('pt-br', {
                                         style: 'currency',
                                         currency: 'BRL'
-                                    }).format(totalCart)}
+                                    }).format( deliveryRate + totalCart )}
                                 </h6>
                             </div>
                        </div>
@@ -94,7 +95,7 @@ export function Cart (){
                                     {Intl.NumberFormat('pt-br', {
                                         style: 'currency',
                                         currency: 'BRL'
-                                    }).format(totalCart)}
+                                    }).format( deliveryRate + totalCart )}
                                 </h6>
                         </div>
                         <div className='d-flex justify-content-center align-items-center'>
