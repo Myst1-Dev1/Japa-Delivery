@@ -19,7 +19,7 @@ export function Cart (){
                 <table className='table table-bordered'>
                     <thead className='text-light text-center'>
                         <tr>
-                            <th scope='col'>Imagem</th>
+                            <th scope='col'>Produto</th>
                             <th scope='col'>Nome</th>
                             <th scope='col'>Preço</th>
                             <th scope='col'>Quantidade</th>

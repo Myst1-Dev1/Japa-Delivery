@@ -1,5 +1,4 @@
 .deals-hot {
-    flex-wrap: wrap;
     
     h4 {
         font-weight: bold;
@@ -9,8 +8,7 @@
     .deals-hot-container {
             box-shadow: 0 0 0.1rem #000;
             padding: 1rem;
-            flex: 1;
-            max-width: 100%;
+            width: 48.5rem;
             transition: 0.3s;
 
         .deals-hot-content {
@@ -100,9 +98,9 @@
     }
 
     .top-selling-products {
-        max-width: 100%;
         padding: 1rem;
         box-shadow: 0 0 0.1rem #000;
+        width: 20rem;
 
         .product-box {
 
@@ -137,7 +135,6 @@
 @media(max-width:750px) {
     .deals-hot-container {
         width: 100%;
-        flex:0!important;
 
         .add-to-cart {
             h6 {

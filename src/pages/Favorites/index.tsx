@@ -24,16 +24,16 @@ export function Favorites() {
                 <>
                     {favorites.map(favorite => {
                         return (
-                            <div className='favorite-container mb-4 d-flex justify-content-between align-items-center' key={favorite.favorite._id}>
-                                <div className='favorite-box d-flex gap-3'>
+                            <div className='favorite-container mb-4 row' key={favorite.favorite._id}>
+                                <div className='favorite-box d-flex gap-3 col-md-6'>
                                     <img src={favorite.favorite.image} alt="favorite" />
                                     <h5 className='fw-bold'>{favorite.favorite.name}</h5>
                                 </div>
-                                <div className='favorite-buy'>
+                                <div className='favorite-buy col-md-4'>
                                     <p onClick={() => handleAddFavoriteProductToCart(favorite.favorite._id)} className='fw-bold'>Adicionar ao carrinho</p>
                                     <Link to="/loja"><p className='fw-bold'>Compre agora</p></Link>
                                 </div>
-                                <div>
+                                <div className='col-md-2'>
                                     <p>{Intl.NumberFormat('pt-br', {
                                         style:'currency',
                                         currency:'BRL'

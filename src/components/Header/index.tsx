@@ -28,6 +28,11 @@ export function Header() {
     function handleCloseResponsiveMenu() {
         setOpenResponsiveMenu(false);
     }
+    
+    function handleOpenResponsiveCart() {
+        setOpenResponsiveMenu(false);
+        handleOpenCart();
+    }
 
     function handleOpenProfileUser() {
         setOpenProfileUser(!openProfileUser);
@@ -80,9 +85,12 @@ export function Header() {
                                             <h6 className='m-auto'>{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
                                         </div>
                                        
-                                        <div onClick={auth.signOut} className="icon d-flex align-items-center gap-2">
-                                            <GoSignOut className='icon'  />
-                                            <h6>Logout</h6>
+                                        <div>
+                                            {/* <h6>Histórico de compras</h6> */}
+                                            <div onClick={auth.signOut} className="icon d-flex align-items-center gap-2">
+                                                <GoSignOut className='icon'  />
+                                                <h6 className='mb-0'>Sair</h6>
+                                            </div>
                                         </div>
                                    </div>
                                 )}
@@ -120,6 +128,36 @@ export function Header() {
                               <div className='item-menu'>
                                   <Link to="/contato">CONTATO</Link>
                               </div>
+                          </div>
+
+                          <div className="responsive-header-icons d-flex justify-content-center align-items-center gap-3 px-3 mt-5">
+                                <div className="icon">
+                                    <BsCart onClick={handleOpenResponsiveCart} />
+                                    <div className="items-in-cart">
+                                        <p>{shoppingCart.length}</p>
+                                    </div>
+                                </div>
+                                <div className="icon">
+                                    <Link className='icon' to="/favorites"> <BsHeart /> </Link>
+                                    <div className="favorites-amount">
+                                        <p>{favorites.length}</p>
+                                    </div>
+                                </div>
+                                {
+                                    auth.user ? (
+                                        <>
+                                            <div className="user-image">
+                                                <img onClick={handleOpenProfileUser} src={userImage} alt="user" />
+                                            </div>
+                                        </>
+                                        )
+                                        :
+                                        (
+                                            <div className="icon">
+                                                <Link to="/login" ><BsPerson style={{fontSize:'1.7rem'}} className='icon' /></Link>
+                                            </div>
+                                        )
+                                }
                           </div>
                     </div>
             }

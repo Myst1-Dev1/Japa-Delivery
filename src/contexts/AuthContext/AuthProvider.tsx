@@ -15,7 +15,7 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
 
     useEffect(() => {
         validateToken();
-    },[UserApi])
+    },[])
 
 
     const validateToken = async () => {
@@ -33,7 +33,7 @@ export const AuthProvider = ( { children }: AuthProviderProps ) => {
 
         const res = await UserApi.login(email, password);
 
-        if(res.status == 201){
+        if(res.status === 201){
             const tokenGenerated = `${res.headers['auth-token']}`
             localStorage.setItem('token', tokenGenerated);
     

@@ -1,7 +1,8 @@
 .home-page {
 
     .banner {
-        background-color: var(--gray-200);
+        background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.6)),url(../../assets/images/japanese-food-banner.jpg);
+        background-position: center;
         width: 100%;
         min-height:70vh;
         background-size: cover;
@@ -9,8 +10,11 @@
         flex-wrap: wrap;
 
         .banner-subtitles {
+            color: var(--text-white);
+
             h2 {
                 font-size: 3rem;
+                
             }
         }
 

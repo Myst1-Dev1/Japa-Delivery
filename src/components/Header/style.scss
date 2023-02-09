@@ -7,7 +7,6 @@
 
         h1 {
             font-size:2rem;
-            font-family: 'Sevillana', sans-serif;
         }
 
         nav {
@@ -86,7 +85,7 @@
                 box-shadow: 1px 1px 5px #000;
                 border-radius: 0.325rem;
                 height: 8rem;
-                transform: scaleX(1);
+                transform: scaleY(1);
                 width: 12rem;
                 padding: 0.6rem 0.8rem;
                 position: absolute;
@@ -118,7 +117,7 @@
 
     @keyframes fadeProfile {
         0%{
-            transform: scaleX(0);
+            transform: scaleY(0);
         }
     }
 
@@ -153,6 +152,36 @@
                     &:hover {
                         color: var(--red-500);
                     }
+                }
+            }
+        }
+        .responsive-header-icons {
+
+            .icon {
+                cursor: pointer;
+                color: #000;
+
+                &:hover {
+                    color: var(--red-500);
+                }
+                p {
+                    font-size: 0.58rem;
+                    position: absolute;
+                    top: 15rem;
+                    right: 5.99rem;
+                }
+                .favorites-amount {
+                    p {
+                        font-size: 0.58rem;
+                        position: absolute;
+                        top: 15rem;
+                        right: 4.4rem;
+                    }
+                }
+            }
+            .user-image {
+                img {
+                    width: 1.4rem;
                 }
             }
         }
@@ -282,14 +311,18 @@
 
             .header-icons {
                 
-                // .icon {
-                    
-                // }
+                .icon {
+                    display: none;    
+                }
                 .icon-responsive {
                     display: block;
                     position: absolute;
                     top: -3rem;
                     right: -17rem;
+                }
+
+                .user-image {
+                    display: none;
                 }
 
                 .items-in-cart {

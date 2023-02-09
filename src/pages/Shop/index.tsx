@@ -29,10 +29,10 @@ export function Shop() {
                 {products.length === 0 ? 
                     <p className='mt-5 text-center'>Não há produtos que correspondam a sua pesquisa 😭</p> 
                     : 
-                    <div className='product-list mt-5 d-flex justify-content-evenly align-items-center container'>
+                    <div className='product-list mt-5 row m-auto container'>
                     {currentItens.map(product => {
                         return (
-                            <div key={product._id}>
+                            <div className='col-md-4' key={product._id}>
                                 <ProductBox
                                     productImage={product.image}
                                     productName={product.name}

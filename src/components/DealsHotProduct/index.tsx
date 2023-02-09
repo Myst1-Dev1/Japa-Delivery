@@ -75,10 +75,10 @@ export function DealsHotProduct ({countDownTimeStampMs}: DealsHotProps ) {
 
     return (
         <div>
-            <div className="container deals-hot d-flex justify-content-center align-items-center gap-4 mt-5 mb-5">
-                <div className='deals-hot-container'>
+            <div className="container deals-hot row m-auto mt-5 gap-4 mb-5">
+                <div className='deals-hot-container col-md-6'>
                     <h4>Oferta quente do dia</h4>
-                    <div className='deals-hot-content d-flex align-items-center gap-4 mt-4'>
+                    <div className='deals-hot-content d-flex align-items-center gap-4 mt-5'>
                         <div className="img-container"> 
                             <img src={harumaki} alt="harumaki" />
                         </div>
@@ -132,7 +132,7 @@ export function DealsHotProduct ({countDownTimeStampMs}: DealsHotProps ) {
                         </div>
                     </div>
                 </div>
-                <div className='top-selling-products'>
+                <div className='top-selling-products col-md-6'>
                     <h4 className='mb-4'>Produtos mais vendidos</h4>
                     <div className='d-flex flex-column'>
                         {topSellingProducts.map(product => {
