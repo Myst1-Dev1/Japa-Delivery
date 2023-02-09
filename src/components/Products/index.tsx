@@ -6,7 +6,7 @@ import { ProductBox } from '../ProductBox';
 import { useProducts } from '../../contexts/ProductsContext/useProducts';
 
 export function Products () {
-
+    // const uploadAPI = process.env.UPLOADS;
     const {products, currentItens} = useProducts();
 
     return (

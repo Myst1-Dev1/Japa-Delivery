@@ -38,7 +38,7 @@ export function CartProduct() {
                                             <img src={item.product.image} alt="food-name" />
                                         </div>
                                         <div>
-                                            <h6>{item.quantity} Harumaki</h6>
+                                            <h6>{item.quantity + 'x'} {item.product.name} </h6>
                                             <div className='cart-remove d-flex justify-content-between'>
                                                 <p>
                                                     {Intl.NumberFormat('pt-br', {
@@ -46,8 +46,8 @@ export function CartProduct() {
                                                         currency: 'BRL'
                                                     }).format(item.quantity * item.product.price)} 
                                                 </p>
-                                                <div className='remove-product d-flex justify-content-center align-items-center'>
-                                                    <IoMdClose onClick={() => handleRemoveItemToCart(item.product._id)} />
+                                                <div className='remove-product d-flex justify-content-center align-items-center' onClick={() => handleRemoveItemToCart(item.product._id)} >
+                                                    <IoMdClose/>
                                                 </div>
                                             </div>
                                         </div>
