@@ -90,7 +90,7 @@ export function Footer() {
 
             <div className="copyright mt-5 d-flex justify-content-between align-items-center">
                 <img src={payments} alt="payments" />
-                <p className='mt-4'>&copy;2022 Todos os direitos reservados.</p>
+                <p className='mt-4'>&copy;2023 Todos os direitos reservados.</p>
                 
             </div>
         </footer>

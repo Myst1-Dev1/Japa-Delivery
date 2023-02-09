@@ -17,7 +17,7 @@ export function Home() {
             {/* Banner */}
             <div className="banner d-flex align-items-center justify-content-evenly">
                 <div className="banner-subtitles">
-                    <p>Produto Tendência em 2022</p>
+                    <p>Produto Tendência em 2023</p>
                     <h2>O melhor da <br /> culinária japonesa</h2>
                     <p>Loren ipsun is simply dummy text of the printing and <br /> 
                         typesetting industry. Lorem Ipsum has been the industry'

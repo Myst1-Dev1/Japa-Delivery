@@ -24,7 +24,7 @@ export function CartProduct() {
                     <div>
 
                         <div className='cart-box d-flex justify-content-between align-items-center'>
-                            <h5>Shopping Cart</h5>
+                            <h5>Carrinho de compras</h5>
                             <IoMdClose className='close-cart' onClick={handleCloseCart} />
                         </div>
 
