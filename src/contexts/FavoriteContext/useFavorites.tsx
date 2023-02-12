@@ -18,7 +18,7 @@ export const FavoritesContext = createContext<FavoritesContextData>(
     {} as FavoritesContextData
 );
 
-interface Favorites {
+export interface Favorites {
     favorite: Product;
     quantity:number;
 }
@@ -27,7 +27,6 @@ export function FavoritesProvider({children}: FavoriteProviderProps) {
     const [favorites, setFavorites] = useState<Favorites[]>([]);
     const { products } = useProducts();
 
-   
 
     function addProductToFavorites(id:string) {
         const item = products.find(product => product._id === id);
@@ -54,8 +53,8 @@ export function FavoritesProvider({children}: FavoriteProviderProps) {
 
         const newFavoriteItem:Favorites[] = [...favorites, favoriteItem]
         setFavorites(newFavoriteItem);
-    }
 
+    }
 
     function handleRemoveProducToFavorites(id:string) {
         const alreadyInFavorites = favorites.find(
@@ -87,7 +86,7 @@ export function FavoritesProvider({children}: FavoriteProviderProps) {
             setFavorites,
             addProductToFavorites,
             handleRemoveProducToFavorites,
-            handleCleanFavorites
+            handleCleanFavorites,
         }}>
             {children}
         </FavoritesContext.Provider>

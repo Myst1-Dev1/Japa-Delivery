@@ -2,7 +2,7 @@ import { BsCoin, BsEnvelope, BsHeadphones, BsTruck } from 'react-icons/bs';
 import { Button } from '../../components/Button';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import './style.scss';
-const japaneseCook = require('../../assets/images/japanese-cook.png');
+import { Link } from 'react-router-dom';
 const teamMember1 = require('../../assets/images/team-member1.jpg');
 const teamMember2 = require('../../assets/images/team-member2.jpg');
 const teamMember3 = require('../../assets/images/team-member3.jpg');
@@ -31,20 +31,26 @@ const teamMembers = [
 export function About() {
     return (
         <>
-            <div className="about d-flex justify-content-between align-items-center container mt-5 mb-3">
-                <div className="about-subtitles">
-                    <h4>Quem é a <br /> M&K Delivery</h4>
-                    <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it
-                        to make a type specimen book. 
-                    </p>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                    <Button className="mb-4">Saíba mais</Button>
+            <div className="about">
+                <div className="about-banner d-flex justify-content-center align-items-center flex-column">
+                        <h2>Sobre</h2>
+                        <p><Link to="/">Inicio</Link> / <span>Sobre</span></p>
                 </div>
-                <div className="img-container">
-                    <img src={japaneseCook} alt="japanese-cook" />
+                <div className='container mt-3 about-container d-flex justify-content-between align-items-center'>
+                    <div className="about-subtitles">
+                        <h4>Quem é a <br /> M&K Delivery</h4>
+                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it
+                            to make a type specimen book. 
+                        </p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                        <Button className="mb-4">Saíba mais</Button>
+                    </div>
+                    <div className="img-container">
+                        {/* <img src={japaneseCook} alt="japanese-cook" /> */}
+                    </div>
                 </div>
             </div>
 

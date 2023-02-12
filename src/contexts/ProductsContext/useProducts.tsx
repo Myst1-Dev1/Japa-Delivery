@@ -33,6 +33,9 @@ export function ProductsProvider({children}: ProductProviderProps) {
         const res = await ProductsApi.get();
         setProducts(res.data);
         setFilterProducts(res.data);
+
+        // const favorites = res.data;
+        // JSON.stringify(favorites);
     }
 
     useEffect(() => {

@@ -45,7 +45,7 @@ export function Header() {
         
     return (
         <div className='header'>
-            <header className='d-flex justify-content-evenly align-items-center'>
+            <header className='d-flex justify-content-around align-items-center'>
                 <h1 className='mb-0'>M&K Delivery</h1>
                 <div className="navBar d-flex justify-content-between align-items-center">
                     <nav>
@@ -80,14 +80,22 @@ export function Header() {
 
                                 {openProfileUser && (
                                    <div className='user-profile d-flex flex-column justify-content-between'>
-                                        <div className='profile-box d-flex align-items-center'>
+                                        <div className='profile-box p-2 d-flex align-items-center'>
                                             <img src={userImage} alt="user" />
                                             <h6 className='m-auto'>{`${auth.user.firstname} ${auth.user.lastname}`}</h6>
+                                        </div>
+                                        <div className='mt-2 mb-1 px-2 py-3 d-flex flex-column gap-1 border-top border-bottom border-muted'>
+                                            <Link to="/"><h6>Ínicio</h6></Link>
+                                            <Link to="/"><h6>Histórico de pedidos</h6></Link>
+                                            <Link to="/"><h6>Endereços</h6></Link>
+                                            <Link to="/favorites"><h6>Favoritos</h6></Link>
+                                            <Link to="/"><h6>Registrar novo produto</h6></Link>
+                                                      
                                         </div>
                                        
                                         <div>
                                             {/* <h6>Histórico de compras</h6> */}
-                                            <div onClick={auth.signOut} className="icon d-flex align-items-center gap-2">
+                                            <div onClick={auth.signOut} className="icon p-2 d-flex align-items-center gap-2">
                                                 <GoSignOut className='icon'  />
                                                 <h6 className='mb-0'>Sair</h6>
                                             </div>

@@ -4,6 +4,7 @@ import { ProductBox } from '../../components/ProductBox';
 import { Pagination } from '../../components/Pagination';
 import { useProducts } from '../../contexts/ProductsContext/useProducts';
 import { Filter } from '../../components/Filter';
+import { Link } from 'react-router-dom';
 
 
 export function Shop() {
@@ -14,7 +15,7 @@ export function Shop() {
             <div className='shop-banner d-flex justify-content-center align-items-center'>
                 <div className='shop-banner-subtitles d-flex flex-column align-items-center gap-2'>
                     <h2>Loja</h2>
-                    <p><a href="/">Inicio</a> / <span>Loja</span></p>
+                    <p><Link to="/">Inicio</Link> / <span>Loja</span></p>
                 </div>
             </div>
             <div className='shop-container container mt-4 mb-5'>

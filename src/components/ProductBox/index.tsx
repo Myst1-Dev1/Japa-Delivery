@@ -25,7 +25,6 @@ export function ProductBox({
 }: ProductBoxProps) {
 
     const { handleAddToCart, handleOpenCart } = useCart();
-
     const { favorites, addProductToFavorites } = useFavorites()
 
     const isFavorite = favorites.find((product) => product.favorite._id === onProducts._id);
@@ -34,12 +33,18 @@ export function ProductBox({
         handleAddToCart(onProducts._id)
         handleOpenCart();
     }
+    
+    function handleAddProductToFavorites() {
+        addProductToFavorites(onProducts._id);
+
+    }
 
     return (
         <div className="product-box mb-3 m-auto d-flex flex-column justify-content-center align-items-center gap-2">
             <div className="img-container">
                 <img src={productImage} alt="takoyaki" />
             </div>
+
             <img src={fiveStar} alt="five-star" />
             <h4>{productName}</h4>
             <p>
@@ -56,7 +61,7 @@ export function ProductBox({
             </p>
             <button onClick={handleAddProduct}>Adicionar ao carrinho</button>
             <div className='product-icon d-flex flex-column gap-2'>
-                <FaHeart onClick={() => addProductToFavorites(onProducts._id)} className={isFavorite ? "text-danger" : "text-dark"} />
+                <FaHeart onClick={handleAddProductToFavorites} className={isFavorite ? "text-danger" : "text-dark"} />
             </div>
             <div className="product-open-modal">
                 <BsEye />

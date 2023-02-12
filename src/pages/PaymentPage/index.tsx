@@ -8,8 +8,8 @@ export function PaymentPage() {
 
     return(
         <div className='payment-page container py-5'>
-            <div className='d-flex justify-content-center align-items-center payment-container gap-5'>
-                <div className='payment-details'>
+            <div className='row m-auto gap-2 payment-container'>
+                <div className='payment-details col-md-8'>
                     <h5>Detalhes de cobrança</h5>
                    <div className='mt-3 d-flex flex-column gap-3'>
                     <div className='d-flex gap-3'>
@@ -40,7 +40,7 @@ export function PaymentPage() {
                         </div>
                    </div>
                 </div>
-                <div className='d-flex flex-column gap-3'>
+                <div className='d-flex flex-column gap-3 col-md-4'>
                     <div className="order-summary">
                         <h5 className='mb-5'>Resumo do pedido</h5>
                         <div className='d-flex flex-column gap-3'>

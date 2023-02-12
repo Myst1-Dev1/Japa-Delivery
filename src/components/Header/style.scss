@@ -1,9 +1,9 @@
 .header {
     header {
         padding:1rem 2rem;
-        background-color: var(--blackAlpha-800);
-        color: var(--text-white);
+        // background-color: var(--gray-200);
         width: 100%;
+        border-bottom: 1px solid var(--gray-300);
 
         h1 {
             font-size:2rem;
@@ -16,7 +16,8 @@
     
                 li {
                     a{
-                        color: var(--text-white);
+                        color: #000;
+                        font-weight: bold;
                         margin: 0.7rem;
                         transition: color 0.3s;
     
@@ -37,7 +38,6 @@
                 font-size: 1.5rem;
                 cursor: pointer;
                 transition: color 0.3s;
-                color: var(--text-white);
     
                 &:hover {
                     color: var(--red-500);
@@ -63,7 +63,7 @@
                 }
 
                 a {
-                    color: var(--text-white);
+                    color: #000;
                     transition: 0.3s;
 
                     &:hover{
@@ -80,17 +80,15 @@
             }
 
             .user-profile {
-                background-color: var(--blackAlpha-900);
-                color: var(--text-white);
+                background-color: #fff;
                 box-shadow: 1px 1px 5px #000;
                 border-radius: 0.325rem;
-                height: 8rem;
                 transform: scaleY(1);
-                width: 12rem;
-                padding: 0.6rem 0.8rem;
+                width: 13rem;
                 position: absolute;
-                top: 3rem;
-                left: 4rem;
+                top: 0.2rem;
+                right: 0.4rem;
+                z-index: 1000;
                 animation: fadeProfile 0.5s ease;
 
                 .profile-box {
@@ -106,6 +104,14 @@
 
                 .icon {
                     font-size: 1.2rem;
+                }
+            }
+
+            a{
+                color: #000;
+                transition: 0.3s;
+                &:hover {
+                    color: var(--red-500);
                 }
             }
 
@@ -327,6 +333,10 @@
 
                 .items-in-cart {
                     left: 2rem;
+                }
+
+                .user-profile {
+                    right: -17rem!important;
                 }
             }
         }

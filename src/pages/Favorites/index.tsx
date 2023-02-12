@@ -19,6 +19,7 @@ export function Favorites() {
                 <h2>Lista de favoritos</h2>
                 <p className='fw-bold'>{favorites.length} item</p>
             </div>
+
             <div className="container py-5">
                {favorites.length === 0 ? <p>Você não tem nenhum produto favorito 😭</p> : 
                 <>
