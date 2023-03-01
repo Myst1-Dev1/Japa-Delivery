@@ -13,6 +13,7 @@ export function Favorites() {
     handleOpenCart()
    }
 
+
     return (
         <div className="favorites container mt-5 mb-5">
             <div className='d-flex justify-content-between align-items-center'>

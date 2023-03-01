@@ -15,8 +15,8 @@ export function Home() {
     return (
         <div className='home-page'>
             {/* Banner */}
-            <div className="banner d-flex align-items-center justify-content-evenly">
-                <div className="banner-subtitles">
+            <div className="banner d-flex align-items-center justify-content-start">
+                <div className="banner-subtitles container">
                     <p>Produto Tendência em 2023</p>
                     <h2>O melhor da <br /> culinária japonesa</h2>
                     <p>Loren ipsun is simply dummy text of the printing and <br /> 
@@ -25,9 +25,9 @@ export function Home() {
                     <Button>Compre agora</Button>
                 </div>
 
-                <div className='banner-image'>
+                {/* <div className='banner-image'>
                     <img src={bannerImg} alt="" />
-                </div>
+                </div> */}
             </div>
             <Products />
             <DealsHotProduct countDownTimeStampMs={2230686000000} />

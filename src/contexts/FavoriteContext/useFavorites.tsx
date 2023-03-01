@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, ReactNode } from 'react';
+import { useContext, createContext, useState, useEffect, ReactNode } from 'react';
 import { Product } from '../../Types/Product';
 import { useProducts } from '../ProductsContext/useProducts';
 
@@ -24,9 +24,10 @@ export interface Favorites {
 }
 
 export function FavoritesProvider({children}: FavoriteProviderProps) {
-    const [favorites, setFavorites] = useState<Favorites[]>([]);
+    const [favorites, setFavorites] = useState<Favorites[]>(() => {
+        return JSON.parse(localStorage.getItem('favoriteFoods') || '[]') || []
+    });
     const { products } = useProducts();
-
 
     function addProductToFavorites(id:string) {
         const item = products.find(product => product._id === id);
@@ -53,7 +54,6 @@ export function FavoritesProvider({children}: FavoriteProviderProps) {
 
         const newFavoriteItem:Favorites[] = [...favorites, favoriteItem]
         setFavorites(newFavoriteItem);
-
     }
 
     function handleRemoveProducToFavorites(id:string) {
@@ -74,11 +74,16 @@ export function FavoritesProvider({children}: FavoriteProviderProps) {
         }
         const newFavoriteItem:Favorites[] = favorites.filter(item => item.favorite._id !== id);
         setFavorites(newFavoriteItem);
+        localStorage.removeItem('favoriteFoods');
     }
 
     function handleCleanFavorites() {
         setFavorites([]);
     }
+
+    useEffect(() => {
+        localStorage.setItem('favoriteFoods', JSON.stringify(favorites));
+    }, [favorites]);
 
     return (
         <FavoritesContext.Provider value={{
